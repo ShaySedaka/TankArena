@@ -6,13 +6,14 @@ using UnityEngine;
 [RequireComponent(typeof(InputHandler))]
 public class TopDownCharacterMover : MonoBehaviour
 {
+    [SerializeField]
+    private Tank _tank;
+
     private InputHandler _input;
 
     [SerializeField]
     private bool RotateTowardMouse;
 
-    [SerializeField]
-    private float MovementSpeed;
     [SerializeField]
     private float RotationSpeed;
 
@@ -56,7 +57,7 @@ public class TopDownCharacterMover : MonoBehaviour
 
     private Vector3 MoveTowardTarget(Vector3 targetVector)
     {
-        var speed = MovementSpeed * Time.deltaTime;
+        var speed = _tank.MovementSpeed * Time.deltaTime;
 
         targetVector = Quaternion.Euler(0, Camera.gameObject.transform.rotation.eulerAngles.y, 0) * targetVector;
         var targetPosition = transform.position + targetVector * speed;

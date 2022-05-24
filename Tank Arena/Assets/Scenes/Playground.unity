@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18101653, g: 0.22658356, b: 0.30727655, a: 1}
+  m_IndirectSpecularColor: {r: 0.18101622, g: 0.22658299, b: 0.3072758, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -406,6 +406,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afd58f28713632e419efd8f302698ceb, type: 3}
+--- !u!1 &75859228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 75859229}
+  m_Layer: 0
+  m_Name: PickupGraveyard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &75859229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75859228}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -20, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &77597555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: aef18f364fed1a64ba495d15dcee610d,
@@ -763,6 +793,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Green Tank
       objectReference: {fileID: 0}
+    - target: {fileID: 243353431827233457, guid: 6188b37aa629a9c4d8611371b682e079,
+        type: 3}
+      propertyPath: _tank
+      value: 
+      objectReference: {fileID: 1180370161}
     - target: {fileID: 243353431827233457, guid: 6188b37aa629a9c4d8611371b682e079,
         type: 3}
       propertyPath: Camera
@@ -1947,6 +1982,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50912a5d3c9322a46afa5ca162962a5c, type: 3}
+--- !u!1 &1180370160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 243353431827233456, guid: 6188b37aa629a9c4d8611371b682e079,
+    type: 3}
+  m_PrefabInstance: {fileID: 311508486}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1180370161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180370160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33537463a9c84b449b7e32f55eafaf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movementSpeed: 8
 --- !u!1001 &1237104474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3277,6 +3331,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4275795562184051538, guid: 77c2108e75a6da04b8a9c2d5f73fc910,
+        type: 3}
+      propertyPath: _pickupDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275795562184051538, guid: 77c2108e75a6da04b8a9c2d5f73fc910,
+        type: 3}
+      propertyPath: _pickupGraveyard
+      value: 
+      objectReference: {fileID: 75859229}
     - target: {fileID: 7155462594337050797, guid: 77c2108e75a6da04b8a9c2d5f73fc910,
         type: 3}
       propertyPath: m_RootOrder

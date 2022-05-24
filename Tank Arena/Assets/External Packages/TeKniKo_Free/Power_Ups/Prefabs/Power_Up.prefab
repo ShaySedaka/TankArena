@@ -167,9 +167,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84221c5d9e2cf0b488ddb37026596b45, type: 3}
+--- !u!1 &8623484822163350725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5773399876510048641, guid: 84221c5d9e2cf0b488ddb37026596b45,
+    type: 3}
+  m_PrefabInstance: {fileID: 2860904348935685444}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8623484822163350745 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5773399876510048669, guid: 84221c5d9e2cf0b488ddb37026596b45,
     type: 3}
   m_PrefabInstance: {fileID: 2860904348935685444}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4275795562184051538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623484822163350725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91090d1e96ca649439510cd2d70aa797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tank: {fileID: 0}
+  _pickupDuration: 5
+  _speedFactor: 2
