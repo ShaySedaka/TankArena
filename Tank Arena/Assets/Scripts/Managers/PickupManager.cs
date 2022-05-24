@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankShizz
+public class PickupManager : Singleton<PickupManager>
 {
     
 }

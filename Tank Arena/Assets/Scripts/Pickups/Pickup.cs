@@ -4,11 +4,16 @@ using UnityEngine;
 
 public abstract class Pickup : MonoBehaviour
 {
-    [SerializeField] private Transform _pickupGraveyard;
+    private Transform _pickupGraveyard;
 
     [SerializeField] protected Tank _tank;
 
     [SerializeField] private float _pickupDuration;
+
+    private void Awake()
+    {
+        _pickupGraveyard = PickupManager.Instance.gameObject.transform;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
