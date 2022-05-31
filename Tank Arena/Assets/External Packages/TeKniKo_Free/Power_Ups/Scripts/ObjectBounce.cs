@@ -11,10 +11,12 @@ public class ObjectBounce : MonoBehaviour
     private float startHeight;
     private float timeOffset;
 
+    public float StartHeight { get => startHeight; set => startHeight = value; }
+
     // Start is called before the first frame update
     void Start()
     {
-        startHeight = transform.localPosition.y;
+        StartHeight = transform.localPosition.y;
         timeOffset = Random.value * Mathf.PI * 2;
     }
 
@@ -22,7 +24,7 @@ public class ObjectBounce : MonoBehaviour
     void Update()
     {
         //animate
-        float finalheight = startHeight + Mathf.Sin(Time.time * bounceSpeed + timeOffset) * bounceAmplitude;
+        float finalheight = StartHeight + Mathf.Sin(Time.time * bounceSpeed + timeOffset) * bounceAmplitude;
         var position = transform.localPosition;
         position.y = finalheight;
         transform.localPosition = position;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Pickup : MonoBehaviour
 {
-    private Transform _pickupGraveyard;
+    private Transform _pickupManager;
 
     [SerializeField] protected Tank _tank;
 
@@ -12,19 +12,18 @@ public abstract class Pickup : MonoBehaviour
 
     private void Awake()
     {
-        _pickupGraveyard = PickupManager.Instance.gameObject.transform;
+        _pickupManager = PickupManager.Instance.gameObject.transform;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Entered Sphere");
+
         _tank = other.GetComponent<Tank>();
         if(_tank != null)
         {
             StartCoroutine(PickupBegin());
-            transform.parent.transform.position = new Vector3(_pickupGraveyard.position.x, _pickupGraveyard.position.y, _pickupGraveyard.position.z);
-
-
+            transform.parent.transform.position = new Vector3(_pickupManager.position.x, _pickupManager.position.y, _pickupManager.position.z);
+            transform.parent.gameObject.GetComponent<ObjectBounce>().StartHeight = _pickupManager.transform.position.y;
         }
     }
 
