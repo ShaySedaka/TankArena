@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18101622, g: 0.22658299, b: 0.3072758, a: 1}
+  m_IndirectSpecularColor: {r: 0.18101653, g: 0.22658356, b: 0.30727655, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -797,6 +797,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CollisionDetection
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 998712760458086099, guid: 6188b37aa629a9c4d8611371b682e079,
+        type: 3}
+      propertyPath: _mainCamera
+      value: 
+      objectReference: {fileID: 2007912206}
+    - target: {fileID: 1077027691475651153, guid: 6188b37aa629a9c4d8611371b682e079,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077027691475651153, guid: 6188b37aa629a9c4d8611371b682e079,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5168010429342526581, guid: 6188b37aa629a9c4d8611371b682e079,
+        type: 3}
+      propertyPath: m_Direction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5250381771619382534, guid: 6188b37aa629a9c4d8611371b682e079,
         type: 3}
@@ -1995,27 +2015,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50912a5d3c9322a46afa5ca162962a5c, type: 3}
---- !u!1 &1180370160 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 243353431827233456, guid: 6188b37aa629a9c4d8611371b682e079,
+--- !u!114 &1180370161 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9004519689802576003, guid: 6188b37aa629a9c4d8611371b682e079,
     type: 3}
   m_PrefabInstance: {fileID: 311508486}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1180370161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1180370160}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33537463a9c84b449b7e32f55eafaf26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentHealth: 4
-  _maxHealth: 10
-  _movementSpeed: 8
 --- !u!1001 &1237104474
 PrefabInstance:
   m_ObjectHideFlags: 0
