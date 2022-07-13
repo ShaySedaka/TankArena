@@ -10,7 +10,7 @@ public class TankShoot : MonoBehaviour
     [SerializeField] GameObject _aimIndicator;
     [SerializeField] float _projectileLifetimeInSecs;
     [SerializeField] float _projectileSpeed;
-    [SerializeField] Camera _mainCamera;
+    private Camera _mainCamera;
 
     private InputHandler _input;
 
@@ -23,7 +23,7 @@ public class TankShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        _mainCamera = RoomManager.Instance.MainCamera;
     }
 
     // Update is called once per frame

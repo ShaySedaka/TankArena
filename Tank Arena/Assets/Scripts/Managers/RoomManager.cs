@@ -8,6 +8,7 @@ using System.IO;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
+    [SerializeField]public Camera MainCamera;
 
     public static RoomManager Instance;
 

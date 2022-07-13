@@ -25,6 +25,11 @@ public class TopDownCharacterMover : MonoBehaviour
         _input = GetComponent<InputHandler>();
     }
 
+    private void Start()
+    {
+        Camera = Camera.main;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {

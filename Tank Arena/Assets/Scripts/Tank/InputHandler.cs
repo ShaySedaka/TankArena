@@ -14,11 +14,6 @@ public class InputHandler : MonoBehaviourPunCallbacks
 
     [SerializeField] PhotonView _view;
 
-    private void Start()
-    {
-        _view = GetComponent<PhotonView>();
-
-    }
 
     // Update is called once per frame
     void Update()

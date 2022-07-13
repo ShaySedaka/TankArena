@@ -12,6 +12,7 @@ public class TankHealthbar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _mainCamera = RoomManager.Instance.MainCamera;
         _slider.maxValue = _tank.MaxHelath;
     }
 
