@@ -128,6 +128,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         Debug.Log("OnJoinedRoom() called by PUN. Now this client is in a room.");
 
+        _waitingRoomManager.ClearWaitingPlayersList();
         _waitingRoomManager.PopulateWaitingPlayerList();
         OnRoomFound();
 
