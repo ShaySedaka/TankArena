@@ -6,24 +6,19 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
 
+    [SerializeField] GameObject _MainMenuView;
+    [SerializeField] GameObject _WaitingRoomView;
+
     [SerializeField] TextMeshProUGUI _connectionStatusText;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] GameObject _playButton;
 
     public void OnConnected()
     {
         _connectionStatusText.text = "CONNECTED";
         _connectionStatusText.color = Color.green;
+
+        //show play button on connected to server
+        _playButton.SetActive(true);
     }
 
     public void OnConnecting()
@@ -35,5 +30,17 @@ public class UIManager : MonoBehaviour
     {
         _connectionStatusText.text = "DISCONNECTED";
         _connectionStatusText.color = Color.red;
+    }
+
+    public void TurnOnMainMenu()
+    {
+        _WaitingRoomView.SetActive(false);
+        _MainMenuView.SetActive(true);
+    }
+
+    public void TurnOnWaitingRoomView()
+    {
+        _MainMenuView.SetActive(false);
+        _WaitingRoomView.SetActive(true);
     }
 }

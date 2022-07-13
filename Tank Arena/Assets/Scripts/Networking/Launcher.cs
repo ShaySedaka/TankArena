@@ -10,6 +10,8 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     [SerializeField] private UIManager _uiManager;
 
+    [SerializeField] WaitingRoomManager _waitingRoomManager;
+
     #endregion
 
 
@@ -20,7 +22,6 @@ public class Launcher : MonoBehaviourPunCallbacks
     /// This client's version number. Users are separated from each other by gameVersion (which allows you to make breaking changes).
     /// </summary>
     string gameVersion = "1";
-
 
     #endregion
 
@@ -45,15 +46,12 @@ public class Launcher : MonoBehaviourPunCallbacks
     void Start()
     {
         Connect();
-
     }
-
 
     #endregion
 
 
     #region Public Methods
-
 
     /// <summary>
     /// Start the connection process.
@@ -83,6 +81,17 @@ public class Launcher : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRandomRoom();
     }
 
+    public void OnRoomFound()
+    {
+        _uiManager.TurnOnWaitingRoomView();
+    }
+
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+        _uiManager.TurnOnMainMenu();
+    }
+
     #endregion
 
     #region MonoBehaviourPunCallbacks Callbacks
@@ -91,10 +100,16 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to master.");
-        _uiManager.OnConnected();
+        PhotonNetwork.JoinLobby();       
     }
 
+    public override void OnJoinedLobby()
+    {
+        base.OnJoinedLobby();
 
+        _uiManager.OnConnected();
+        Debug.Log("Joined Lobby.");
+    }
     public override void OnDisconnected(DisconnectCause cause)
     {
         Debug.LogWarningFormat("OnDisconnected() was called by PUN with reason {0}", cause);
@@ -113,17 +128,12 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         Debug.Log("OnJoinedRoom() called by PUN. Now this client is in a room.");
 
-        // #Critical: We only load if we are the first player, else we rely on `PhotonNetwork.AutomaticallySyncScene` to sync our instance scene.
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
-        {
-            Debug.Log("First one in the room, loading Arena...");
+        _waitingRoomManager.PopulateWaitingPlayerList();
+        OnRoomFound();
 
-
-            // #Critical
-            // Load the Room Level.
-            PhotonNetwork.LoadLevel(1);
-        }
     }
+
+
 
     #endregion
 
