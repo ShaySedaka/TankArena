@@ -5,10 +5,14 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 using System.IO;
+using System.Collections.Generic;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
-    [SerializeField]public Camera MainCamera;
+    [SerializeField] public Camera MainCamera;
+    [SerializeField] public List<Transform> SpawnPoints;
+
+    public int PlayersSpawned = 0;
 
     public static RoomManager Instance;
 

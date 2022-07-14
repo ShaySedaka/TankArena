@@ -7,9 +7,12 @@ using System.IO;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField] CameraFollow _cameraFollowScript;
+    
+
 
     private PhotonView _photonView;
     private GameObject _instantiatedController;
+    
 
 
     private void Awake()
@@ -35,8 +38,11 @@ public class PlayerManager : MonoBehaviour
 
     private void CreatePlayerController()
     {
+        RoomManager roomManager = RoomManager.Instance;
+
         //Instantiate Player Controller
-       _instantiatedController = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), Vector3.zero, Quaternion.identity);
+       _instantiatedController = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), roomManager.SpawnPoints[roomManager.PlayersSpawned++].position, Quaternion.identity);
+        
 
         AssignCameraFollowToPlayerController();
     }

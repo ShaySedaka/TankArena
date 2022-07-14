@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 8023088149427732898}
   - component: {fileID: 2465609529393272045}
   - component: {fileID: 5529244131826058139}
+  - component: {fileID: 9059566179338123932}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -227,7 +228,9 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 9059566179338123932}
+  - {fileID: 2076617381066466892}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -261,6 +264,22 @@ MonoBehaviour:
   RotateTowardMouse: 0
   RotationSpeed: 8
   Camera: {fileID: 0}
+--- !u!114 &9059566179338123932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020138001555066124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &2819046209815887310
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,6 +561,7 @@ GameObject:
   - component: {fileID: 6350996569176531702}
   - component: {fileID: 6350996569173107372}
   - component: {fileID: 6350996569174106220}
+  - component: {fileID: 2076617381066466892}
   m_Layer: 0
   m_Name: TankTurret
   m_TagString: Untagged
@@ -614,6 +634,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2076617381066466892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6350996569176309526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &6350996569176309528
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,7 +962,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 2
 --- !u!114 &1413795432061628584
 MonoBehaviour:
