@@ -35,6 +35,7 @@ public class TopDownCharacterMover : MonoBehaviour
         }
     }
 
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -80,6 +81,6 @@ public class TopDownCharacterMover : MonoBehaviour
     {
         if(movementDirection.magnitude == 0) { return; }
         var rotation = Quaternion.LookRotation(movementDirection);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, RotationSpeed);
+        transform.localRotation = Quaternion.RotateTowards(transform.rotation, rotation, RotationSpeed);
     }
 }

@@ -50,7 +50,6 @@ public class PlayerManager : MonoBehaviour
     private void AssignCameraFollowToPlayerController()
     {
         
-       _cameraFollowScript.SetFollowTarget(_instantiatedController.transform);
-        Debug.Log("?");
+       _cameraFollowScript.SetFollowTarget(_instantiatedController.GetComponentInChildren<Rigidbody>().transform);
     }
 }
