@@ -264,6 +264,8 @@ MonoBehaviour:
   RotateTowardMouse: 0
   RotationSpeed: 8
   Camera: {fileID: 0}
+  _input: {fileID: 2465609529393272045}
+  _myPhotonView: {fileID: 8023088149427732898}
 --- !u!114 &9059566179338123932
 MonoBehaviour:
   m_ObjectHideFlags: 0

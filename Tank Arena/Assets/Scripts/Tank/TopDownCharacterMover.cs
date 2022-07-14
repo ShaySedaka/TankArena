@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,6 @@ public class TopDownCharacterMover : MonoBehaviour
     [SerializeField]
     private Tank _tank;
 
-    private InputHandler _input;
-
     [SerializeField]
     private bool RotateTowardMouse;
 
@@ -20,14 +19,20 @@ public class TopDownCharacterMover : MonoBehaviour
     [SerializeField]
     private Camera Camera;
 
-    private void Awake()
-    {
-        _input = GetComponent<InputHandler>();
-    }
+    [SerializeField]
+    private InputHandler _input;
+
+    [SerializeField]
+    private PhotonView _myPhotonView; 
 
     private void Start()
     {
-        Camera = Camera.main;
+        Camera = RoomManager.Instance.MainCamera;
+
+        if(!_myPhotonView.IsMine)
+        {
+            Destroy(gameObject.GetComponentInChildren<Rigidbody>());
+        }
     }
 
     // Update is called once per frame
