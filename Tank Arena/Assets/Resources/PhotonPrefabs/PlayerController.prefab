@@ -185,6 +185,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5661773937995085054}
   - component: {fileID: 8023088149427732898}
+  - component: {fileID: 2465609529393272045}
+  - component: {fileID: 5529244131826058139}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -229,6 +231,36 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &2465609529393272045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020138001555066124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5812227a44562d47943120202aead14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsAiming: 0
+  _view: {fileID: 8023088149427732898}
+--- !u!114 &5529244131826058139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020138001555066124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 098b8cc33427f8345a6dc6138702d3f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tank: {fileID: 2861386515041498413}
+  RotateTowardMouse: 0
+  RotationSpeed: 8
+  Camera: {fileID: 0}
 --- !u!1 &2819046209815887310
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,8 +872,6 @@ GameObject:
   - component: {fileID: 6350996569176531710}
   - component: {fileID: 6350996569176309533}
   - component: {fileID: 6350996569176309520}
-  - component: {fileID: 6350996569176309521}
-  - component: {fileID: 6350996569176309535}
   - component: {fileID: 1413795432061628584}
   - component: {fileID: 2861386515041498413}
   m_Layer: 0
@@ -859,7 +889,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6350996569176309534}
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.355814, y: -11.837755, z: -3.147337}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6350996569176531698}
@@ -898,36 +928,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &6350996569176309521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6350996569176309534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5812227a44562d47943120202aead14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsAiming: 0
-  _view: {fileID: 8023088149427732898}
---- !u!114 &6350996569176309535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6350996569176309534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 098b8cc33427f8345a6dc6138702d3f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tank: {fileID: 2861386515041498413}
-  RotateTowardMouse: 0
-  RotationSpeed: 8
-  Camera: {fileID: 0}
 --- !u!114 &1413795432061628584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -945,6 +945,7 @@ MonoBehaviour:
   _aimIndicator: {fileID: 9122980328125406131}
   _projectileLifetimeInSecs: 0
   _projectileSpeed: 0
+  _input: {fileID: 2465609529393272045}
 --- !u!114 &2861386515041498413
 MonoBehaviour:
   m_ObjectHideFlags: 0

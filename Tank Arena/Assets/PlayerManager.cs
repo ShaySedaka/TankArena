@@ -22,8 +22,8 @@ public class PlayerManager : MonoBehaviour
     {
         if (_photonView.IsMine)
         {
-            CreatePlayerController();
             _cameraFollowScript = RoomManager.Instance.MainCamera.GetComponent<CameraFollow>();
+            CreatePlayerController();
         }
     }
 
@@ -45,5 +45,6 @@ public class PlayerManager : MonoBehaviour
     {
         
        _cameraFollowScript.SetFollowTarget(_instantiatedController.transform);
+        Debug.Log("?");
     }
 }

@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] float _smoothSpeed = 0.125f;
     [SerializeField] Vector3 _offset;
 
-    private Transform _followTarget;
+    [SerializeField] private Transform _followTarget;
 
 
     private void FixedUpdate()

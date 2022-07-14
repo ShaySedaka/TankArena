@@ -12,13 +12,8 @@ public class TankShoot : MonoBehaviour
     [SerializeField] float _projectileSpeed;
     private Camera _mainCamera;
 
-    private InputHandler _input;
+    [SerializeField] private InputHandler _input;
 
-
-    private void Awake()
-    {
-        _input = GetComponent<InputHandler>();
-    }
 
     // Start is called before the first frame update
     void Start()
