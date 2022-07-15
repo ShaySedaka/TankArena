@@ -452,7 +452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6350996569176531698}
   m_Layer: 0
-  m_Name: TankRenderers
+  m_Name: Green Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -841,7 +841,7 @@ GameObject:
   - component: {fileID: 910512988629402696}
   - component: {fileID: 8510989240824410525}
   m_Layer: 0
-  m_Name: Green Tank
+  m_Name: Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
