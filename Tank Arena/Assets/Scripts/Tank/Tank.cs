@@ -4,13 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tank : MonoBehaviourPunCallbacks
+public class Tank : MonoBehaviourPunCallbacks, IDamagable
 {
     [SerializeField] private float _currentHealth;
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _movementSpeed;
     [SerializeField] private PhotonView _photonView;
     [SerializeField] private Outline _outline;
+    [SerializeField] private TankHealthbar _tankHealthbar;
 
     private float _machineGunDMG;
     private float _machineGunFireRate;
@@ -22,7 +23,13 @@ public class Tank : MonoBehaviourPunCallbacks
 
     public float MovementSpeed { get => _movementSpeed; set => _movementSpeed = value; }
     public float MaxHelath { get => _maxHealth; set => _maxHealth = value; }
-    public float CurrentHelath { get => _currentHealth; set => _currentHealth = value; }
+    public float CurrentHealth { get => _currentHealth; 
+        set
+        {
+            _currentHealth = value;
+            _tankHealthbar.UpdateHealthBar();
+        }  
+    }
 
 
     private void Start()
@@ -40,7 +47,7 @@ public class Tank : MonoBehaviourPunCallbacks
 
     public void Heal(float amount)
     {
-        CurrentHelath = Mathf.Clamp(CurrentHelath + amount, 0, MaxHelath);
+        CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, MaxHelath);
     }
 
 
@@ -50,5 +57,21 @@ public class Tank : MonoBehaviourPunCallbacks
         {
 
         }
+    }
+    
+    public void TakeDamage(float damage)
+    {
+        CurrentHealth = Mathf.Max(0, CurrentHealth - damage);
+
+
+        if(CurrentHealth == 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Debug.Log("A Tank died today. Shame.");
     }
 }

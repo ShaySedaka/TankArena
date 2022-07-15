@@ -221,6 +221,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Cannon
+  Damage: 3
+  _shotRange: 10
   _shootingOriginPoint: {fileID: 4408824826715092358}
 --- !u!1 &2020138001555066124
 GameObject:
@@ -4227,8 +4229,8 @@ GameObject:
   - component: {fileID: 6350996569176531710}
   - component: {fileID: 6350996569176309533}
   - component: {fileID: 6350996569176309520}
-  - component: {fileID: 1413795432061628584}
   - component: {fileID: 2861386515041498413}
+  - component: {fileID: 1413795432061628584}
   - component: {fileID: 6873995228554391824}
   - component: {fileID: 227689487701098254}
   - component: {fileID: 910512988629402696}
@@ -4285,6 +4287,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 2
+--- !u!114 &2861386515041498413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6350996569176309534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33537463a9c84b449b7e32f55eafaf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentHealth: 6
+  _maxHealth: 10
+  _movementSpeed: 5
+  _photonView: {fileID: 6873995228554391824}
+  _outline: {fileID: 1440443311607530892}
+  _tankHealthbar: {fileID: 6241979076099457917}
 --- !u!114 &1413795432061628584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4304,23 +4324,6 @@ MonoBehaviour:
   _projectileSpeed: 5
   _input: {fileID: 227689487701098254}
   _cannonWeapon: {fileID: 2082258003342161809}
---- !u!114 &2861386515041498413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6350996569176309534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33537463a9c84b449b7e32f55eafaf26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentHealth: 4
-  _maxHealth: 10
-  _movementSpeed: 5
-  _photonView: {fileID: 6873995228554391824}
-  _outline: {fileID: 1440443311607530892}
 --- !u!114 &6873995228554391824
 MonoBehaviour:
   m_ObjectHideFlags: 0

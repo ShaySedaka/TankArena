@@ -19,10 +19,14 @@ public class TankHealthbar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _slider.value = _tank.CurrentHelath;
+        
 
         this.transform.LookAt(_mainCamera.transform);
     }
 
+    public void UpdateHealthBar()
+    {
+        _slider.value = _tank.CurrentHealth;
+    }
 
 }
