@@ -5,11 +5,9 @@ using UnityEngine;
 public class TankShoot : MonoBehaviour
 {
 
-    [SerializeField] GameObject _originProjectile;
+
     [SerializeField] GameObject _tankTurret;
     [SerializeField] GameObject _aimIndicator;
-    [SerializeField] float _projectileLifetimeInSecs;
-    [SerializeField] float _projectileSpeed;
     [SerializeField] private InputHandler _input;
 
     [SerializeField] private Gun _cannonWeapon;

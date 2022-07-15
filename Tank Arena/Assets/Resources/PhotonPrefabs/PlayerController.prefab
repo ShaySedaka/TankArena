@@ -202,7 +202,6 @@ Transform:
   m_LocalPosition: {x: 0, y: -1.0796412, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8016113563812595442}
   - {fileID: 4408824826715092358}
   m_Father: {fileID: 6350996569176531702}
   m_RootOrder: 1
@@ -343,101 +342,6 @@ MonoBehaviour:
   _slider: {fileID: 2088442113647503835}
   _tank: {fileID: 2861386515041498413}
   _mainCamera: {fileID: 0}
---- !u!1 &4880521273757709572
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8016113563812595442}
-  - component: {fileID: 1018987422479090098}
-  - component: {fileID: 6056727599334605186}
-  - component: {fileID: 8289690873844466913}
-  m_Layer: 0
-  m_Name: Projectile Parent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8016113563812595442
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4880521273757709572}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.612, z: 1.172}
-  m_LocalScale: {x: 0.39999998, y: 0.39999998, z: 0.6}
-  m_Children: []
-  m_Father: {fileID: 2615306055714043660}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1018987422479090098
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4880521273757709572}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6056727599334605186
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4880521273757709572}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8289690873844466913
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4880521273757709572}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5064961057723525014
 GameObject:
   m_ObjectHideFlags: 0
@@ -3972,6 +3876,10 @@ MonoBehaviour:
   Damage: 3
   _shotRange: 10
   _shootingOriginPoint: {fileID: 4408824826715092358}
+  _photonView: {fileID: 3588963632481730567}
+  _projectile: {fileID: 3862921400060111314, guid: 64e344fd51bc2ea4897cb43536d8d3a8,
+    type: 3}
+  _tankCollider: {fileID: 6350996569176309533}
 --- !u!114 &3588963632481730567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4342,11 +4250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d97c3eb9fd3af2f4b93672bff4b99f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _originProjectile: {fileID: 4880521273757709572}
   _tankTurret: {fileID: 6350996569176309526}
   _aimIndicator: {fileID: 9122980328125406131}
-  _projectileLifetimeInSecs: 2
-  _projectileSpeed: 5
   _input: {fileID: 227689487701098254}
   _cannonWeapon: {fileID: 2535597699874618390}
 --- !u!114 &6873995228554391824
@@ -4451,7 +4356,7 @@ Transform:
   m_LocalScale: {x: 0.28282, y: 0.26336, z: 0.45673}
   m_Children: []
   m_Father: {fileID: 2615306055714043660}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8218848462590479264
 MeshFilter:
