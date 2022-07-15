@@ -6,8 +6,6 @@ public class SingleShotGun : Gun
 {
     [SerializeField] Transform _shootingOriginPoint;
     
-
-
     public override void Use()
     {
         Shoot();
@@ -21,9 +19,7 @@ public class SingleShotGun : Gun
         if(Physics.Raycast(ray, out RaycastHit hit, _shotRange))
         {
             hit.collider.gameObject.GetComponent<IDamagable>()?.TakeDamage(Damage);
-        }
-
-        
+        }      
     }
 
     void OnDrawGizmos()

@@ -141,6 +141,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
             List<Transform> spawnPoints = RoomManager.Instance.SpawnPoints;
 
             transform.parent.transform.position = spawnPoints[2].position;
+            transform.localPosition = Vector3.zero;
         }
     }
 
