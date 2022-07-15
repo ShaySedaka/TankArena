@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,9 @@ public class Tank : MonoBehaviour
     [SerializeField] private float _currentHealth;
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _movementSpeed;
+    [SerializeField] private PhotonView _photonView;
+    [SerializeField] private Outline _outline;
+
     private float _machineGunDMG;
     private float _machineGunFireRate;
     private float _machineGunRadius;
@@ -18,6 +22,15 @@ public class Tank : MonoBehaviour
     public float MovementSpeed { get => _movementSpeed; set => _movementSpeed = value; }
     public float MaxHelath { get => _maxHealth; set => _maxHealth = value; }
     public float CurrentHelath { get => _currentHealth; set => _currentHealth = value; }
+
+
+    private void Start()
+    {
+        if(_photonView.IsMine)
+        {
+            _outline.enabled = false;
+        }
+    }
 
     public void Shoot()
     {
