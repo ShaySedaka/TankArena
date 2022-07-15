@@ -4299,12 +4299,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33537463a9c84b449b7e32f55eafaf26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentHealth: 6
+  _currentHealth: 10
   _maxHealth: 10
   _movementSpeed: 5
   _photonView: {fileID: 6873995228554391824}
   _outline: {fileID: 1440443311607530892}
   _tankHealthbar: {fileID: 6241979076099457917}
+  _playerManager: {fileID: 0}
 --- !u!114 &1413795432061628584
 MonoBehaviour:
   m_ObjectHideFlags: 0

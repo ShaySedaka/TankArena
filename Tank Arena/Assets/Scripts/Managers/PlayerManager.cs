@@ -40,8 +40,11 @@ public class PlayerManager : MonoBehaviour
     {
         RoomManager roomManager = RoomManager.Instance;
 
+        Debug.Log("Creating player controller");
+
         //Instantiate Player Controller
-       _instantiatedController = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), roomManager.SpawnPoints[roomManager.PlayersSpawned++].position, Quaternion.identity);
+       _instantiatedController = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), 
+           roomManager.SpawnPoints[(roomManager.PlayersSpawned++)% (roomManager.SpawnPoints.Count)].position, Quaternion.identity, 0, new object[] { _photonView.ViewID });
         
 
         AssignCameraFollowToPlayerController();
@@ -52,4 +55,5 @@ public class PlayerManager : MonoBehaviour
         
        _cameraFollowScript.SetFollowTarget(_instantiatedController.GetComponentInChildren<Rigidbody>().transform);
     }
+
 }
