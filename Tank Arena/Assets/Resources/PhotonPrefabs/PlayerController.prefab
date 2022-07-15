@@ -107,7 +107,7 @@ RectTransform:
   m_Children:
   - {fileID: 3634069481650480751}
   m_Father: {fileID: 6350996569176531710}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -175,6 +175,53 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &1729535293935416632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2615306055714043660}
+  - component: {fileID: 2082258003342161809}
+  m_Layer: 0
+  m_Name: Cannon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2615306055714043660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729535293935416632}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.0796412, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8016113563812595442}
+  - {fileID: 4408824826715092358}
+  m_Father: {fileID: 6350996569176531702}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2082258003342161809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729535293935416632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c67d6a58179314b4ba5657792af9b282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: Cannon
+  _shootingOriginPoint: {fileID: 4408824826715092358}
 --- !u!1 &2020138001555066124
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,12 +384,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4880521273757709572}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.612, z: 1.172}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.6}
+  m_LocalScale: {x: 0.39999998, y: 0.39999998, z: 0.6}
   m_Children: []
-  m_Father: {fileID: 6350996569176531710}
-  m_RootOrder: 2
+  m_Father: {fileID: 2615306055714043660}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1018987422479090098
 MeshFilter:
@@ -3852,6 +3899,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 878828240404910576}
+  - {fileID: 2615306055714043660}
   m_Father: {fileID: 6350996569176531698}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4204,8 +4252,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6350996569176531698}
-  - {fileID: 4408824826715092358}
-  - {fileID: 8016113563812595442}
   - {fileID: 7167757606580202376}
   m_Father: {fileID: 5661773937995085054}
   m_RootOrder: 0
@@ -4254,9 +4300,10 @@ MonoBehaviour:
   _originProjectile: {fileID: 4880521273757709572}
   _tankTurret: {fileID: 6350996569176309526}
   _aimIndicator: {fileID: 9122980328125406131}
-  _projectileLifetimeInSecs: 0
-  _projectileSpeed: 0
+  _projectileLifetimeInSecs: 2
+  _projectileSpeed: 5
   _input: {fileID: 227689487701098254}
+  _cannonWeapon: {fileID: 2082258003342161809}
 --- !u!114 &2861386515041498413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4310,7 +4357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5812227a44562d47943120202aead14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsAiming: 0
+  _shootScript: {fileID: 1413795432061628584}
   _view: {fileID: 6873995228554391824}
 --- !u!114 &910512988629402696
 MonoBehaviour:
@@ -4372,11 +4419,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7264324607547987608}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.575, z: 0.947}
   m_LocalScale: {x: 0.28282, y: 0.26336, z: 0.45673}
   m_Children: []
-  m_Father: {fileID: 6350996569176531710}
+  m_Father: {fileID: 2615306055714043660}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8218848462590479264

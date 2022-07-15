@@ -1,9 +1,10 @@
 using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tank : MonoBehaviour
+public class Tank : MonoBehaviourPunCallbacks
 {
     [SerializeField] private float _currentHealth;
     [SerializeField] private float _maxHealth;
@@ -43,4 +44,11 @@ public class Tank : MonoBehaviour
     }
 
 
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    {
+        if(!_photonView.IsMine && targetPlayer == _photonView.Owner)
+        {
+
+        }
+    }
 }

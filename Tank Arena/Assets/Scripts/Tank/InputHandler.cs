@@ -10,7 +10,7 @@ public class InputHandler : MonoBehaviourPunCallbacks
 
     public Vector3 MousePosition { get; private set; }
 
-    public bool IsAiming;
+    [SerializeField] TankShoot _shootScript;
 
     [SerializeField] PhotonView _view;
 
@@ -26,9 +26,21 @@ public class InputHandler : MonoBehaviourPunCallbacks
 
             MousePosition = Input.mousePosition;
 
-            IsAiming = Input.GetMouseButton(0);
-        }
+            
 
+            if(Input.GetMouseButtonDown(0))
+            {
+                _shootScript.IsAiming = Input.GetMouseButton(0);
+            }
+            else if(Input.GetMouseButtonUp(0))
+            {
+                if(_shootScript.IsAiming)
+                {
+                    _shootScript.Shoot();
+                }
 
+                _shootScript.IsAiming = false;
+            }
+        }    
     }
 }

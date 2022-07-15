@@ -10,9 +10,13 @@ public class TankShoot : MonoBehaviour
     [SerializeField] GameObject _aimIndicator;
     [SerializeField] float _projectileLifetimeInSecs;
     [SerializeField] float _projectileSpeed;
+    [SerializeField] private InputHandler _input;
+
+    [SerializeField] private Gun _cannonWeapon;
+
     private Camera _mainCamera;
 
-    [SerializeField] private InputHandler _input;
+    public bool IsAiming { get; set; }
 
 
     // Start is called before the first frame update
@@ -24,7 +28,7 @@ public class TankShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_input.IsAiming)
+        if(IsAiming)
         {
             if (_aimIndicator.activeSelf == false)
             {
@@ -39,6 +43,12 @@ public class TankShoot : MonoBehaviour
                 _aimIndicator.SetActive(false);
             }
         }
+    }
+
+    public void Shoot()
+    {
+        Debug.Log("SHOOOOOT!");
+        _cannonWeapon.Use();
     }
 
 
