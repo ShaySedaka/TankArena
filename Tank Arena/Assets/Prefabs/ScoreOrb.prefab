@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8288421625071791042}
   - component: {fileID: 5367893255409132859}
   m_Layer: 0
-  m_Name: Power_Up
+  m_Name: ScoreOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,21 +179,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2860904348935685444}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4275795562184051538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8623484822163350725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91090d1e96ca649439510cd2d70aa797, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tank: {fileID: 0}
-  _pickupDuration: 5
-  _speedFactor: 2
 --- !u!54 &883425468878615086
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -210,3 +195,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4275795562184051538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623484822163350725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91090d1e96ca649439510cd2d70aa797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tank: {fileID: 0}
+  _pickupDuration: 5
+  _speedFactor: 2

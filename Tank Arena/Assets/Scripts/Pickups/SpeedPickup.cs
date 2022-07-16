@@ -13,6 +13,7 @@ public class SpeedPickup : Pickup
 
     public override void RemovePickupEffect()
     {
+        Debug.Log("Removing Speed");
         _tank.MovementSpeed /= _speedFactor;
     }
 }

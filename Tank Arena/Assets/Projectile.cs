@@ -42,9 +42,6 @@ public class Projectile : MonoBehaviour
                 _didHitOnce = true; 
             }
 
-            Debug.Log("Damage taken, now destroy bitch!");
-
-            //Destroy with some effect?
             Destroy(gameObject);
         }
         
@@ -56,7 +53,6 @@ public class Projectile : MonoBehaviour
     IEnumerator DestroyAfterSeconds()
     {
         yield return new WaitForSeconds(_lifetimeInSeconds);
-        Debug.Log("Projectile about to be destroyed...");
         Destroy(gameObject);
     }
 

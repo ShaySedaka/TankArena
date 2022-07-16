@@ -4,15 +4,17 @@ using UnityEngine;
 
 public abstract class Pickup : MonoBehaviour
 {
-    private Transform _pickupManager;
+    private PickupManager _pickupManager;
 
     [SerializeField] protected Tank _tank;
 
     [SerializeField] private float _pickupDuration;
 
+    [SerializeField] private int _spawnPointIndex;
+
     private void Awake()
     {
-        _pickupManager = PickupManager.Instance.gameObject.transform;
+        _pickupManager = PickupManager.Instance;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,7 +24,7 @@ public abstract class Pickup : MonoBehaviour
         if(_tank != null)
         {
             StartCoroutine(PickupBegin());
-            transform.parent.transform.position = new Vector3(_pickupManager.position.x, _pickupManager.position.y, _pickupManager.position.z);
+            transform.parent.transform.position = new Vector3(_pickupManager.transform.position.x, _pickupManager.transform.position.y, _pickupManager.transform.position.z);
             transform.parent.gameObject.GetComponent<ObjectBounce>().StartHeight = _pickupManager.transform.position.y;
         }
     }
@@ -34,7 +36,21 @@ public abstract class Pickup : MonoBehaviour
     public IEnumerator PickupBegin()
     {
         ApplyPickUpEffect();
+        ClearSpawnPointIndex();
         yield return new WaitForSeconds(_pickupDuration);
         RemovePickupEffect();
+        yield return new WaitForSeconds(3);
+        //Destroy(transform.parent.gameObject);
+        transform.parent.gameObject.SetActive(false);
+
+    }
+    public void Setup(int index)
+    {
+        _spawnPointIndex = index;
+    }
+
+    private void ClearSpawnPointIndex()
+    {
+        _pickupManager.FreeSpawnPoint(_spawnPointIndex);
     }
 }

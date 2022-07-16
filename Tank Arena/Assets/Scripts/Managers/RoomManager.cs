@@ -16,6 +16,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public static RoomManager Instance;
 
+    public PhotonView PhotonView;
+
     private void Awake()
     {
         if(Instance)
