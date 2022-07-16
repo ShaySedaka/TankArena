@@ -992,7 +992,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323737928}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.8, y: -20, z: -1.1}
+  m_LocalPosition: {x: -18.8, y: 2, z: -1.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 334671151}
@@ -1062,13 +1062,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6843c5b6ce61d42a00f37e928a0b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _photonView: {fileID: 344206892}
+  _pickupsCooldown: 10
+  _activePickups: 0
+  _maxPickups: 3
+  _pickupsSpawnPointsHolder: {fileID: 334671150}
+  _pickupsPrefabs: {fileID: 7495854542567655959, guid: 77c2108e75a6da04b8a9c2d5f73fc910,
+    type: 3}
   _scoreOrbsCooldown: 4
   _activeScoreOrbs: 0
   _maxScoreOrbs: 3
   _scoreOrbSpawnPointsHolder: {fileID: 1343060880}
-  _scorePrefab: {fileID: 7495854542567655959, guid: c4ef1ea20b08800459cdb291ffd7e807,
+  _scoreOrbPrefab: {fileID: 7495854542567655959, guid: c4ef1ea20b08800459cdb291ffd7e807,
     type: 3}
-  _photonView: {fileID: 344206892}
 --- !u!4 &344206891
 Transform:
   m_ObjectHideFlags: 0
@@ -1198,7 +1204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385752604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.9, y: -20, z: -32.1}
+  m_LocalPosition: {x: -17.9, y: 2, z: -21.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 334671151}
@@ -1954,7 +1960,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 681270951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.5, y: -20, z: -14.7}
+  m_LocalPosition: {x: 20.5, y: 2, z: -14.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 334671151}

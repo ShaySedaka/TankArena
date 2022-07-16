@@ -14,6 +14,7 @@ public abstract class Pickup : MonoBehaviour
 
     private void Awake()
     {
+        // TODO: manager should be based on whethter its pickup or score orb
         _pickupManager = PickupManager.Instance;
     }
 
@@ -51,6 +52,6 @@ public abstract class Pickup : MonoBehaviour
 
     private void ClearSpawnPointIndex()
     {
-        _pickupManager.FreeSpawnPoint(_spawnPointIndex);
+        _pickupManager.FreeSpawnPoint(_spawnPointIndex, this);
     }
 }
