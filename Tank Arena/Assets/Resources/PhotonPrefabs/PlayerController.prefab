@@ -3874,6 +3874,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Cannon
   Damage: 3
+  _firingCooldown: 3
+  _timeSinceLastShot: 0
   _shotRange: 10
   _shootingOriginPoint: {fileID: 4408824826715092358}
   _photonView: {fileID: 3588963632481730567}

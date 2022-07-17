@@ -11,10 +11,20 @@ public class SingleShotGun : Gun
     [SerializeField] GameObject _projectile;
     [SerializeField] Collider _tankCollider;
     [SerializeField] Tank _tank;
-    
+
+    private void Update()
+    {
+        _timeSinceLastShot += Time.deltaTime;
+    }
+
     public override void Use()
     {
-        Shoot();
+        if(_timeSinceLastShot >= _firingCooldown)
+        {
+            Shoot();
+            _timeSinceLastShot = 0;
+        }
+        
     }
 
     void Shoot()
