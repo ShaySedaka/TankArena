@@ -34,16 +34,17 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
 
     public PlayerManager PlayerManager { get => _playerManager; set => _playerManager = value; }
     public Gun Canon { get => _canon; set => _canon = value; }
+    public PhotonView PhotonView { get => _photonView; }
 
     private void Awake()
     {
         // find the associated PlayerManagerScript
-        PlayerManager = PhotonView.Find((int)_photonView.InstantiationData[0]).GetComponent<PlayerManager>();
+        PlayerManager = PhotonView.Find((int)PhotonView.InstantiationData[0]).GetComponent<PlayerManager>();
     }
 
     private void Start()
     {
-        if(_photonView.IsMine)
+        if(PhotonView.IsMine)
         {
             _outline.enabled = false;
         }
@@ -51,7 +52,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
-        if(!_photonView.IsMine && targetPlayer == _photonView.Owner)
+        if(!PhotonView.IsMine && targetPlayer == PhotonView.Owner)
         {
 
         }
@@ -63,13 +64,13 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
 
     public void Heal(float healAmount)
     {
-        _photonView.RPC("RPC_Heal", RpcTarget.All, healAmount, _photonView.ViewID);
+        PhotonView.RPC("RPC_Heal", RpcTarget.All, healAmount, PhotonView.ViewID);
     }
 
     [PunRPC]
     private void RPC_Heal(float healAmount, int viewID)
     {
-        if (_photonView.ViewID == viewID)
+        if (PhotonView.ViewID == viewID)
         {
             CurrentHealth = Mathf.Min(MaxHelath, CurrentHealth + healAmount);
         }
@@ -77,14 +78,14 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
 
     public void TakeDamage(float damage)
     {
-        _photonView.RPC("RPC_TakeDamage", RpcTarget.All, damage, _photonView.ViewID); 
+        PhotonView.RPC("RPC_TakeDamage", RpcTarget.All, damage, PhotonView.ViewID); 
 
     }
 
     [PunRPC]
     private void RPC_TakeDamage(float damage, int viewID)
     {
-        if(_photonView.ViewID == viewID)
+        if(PhotonView.ViewID == viewID)
         {
             CurrentHealth = Mathf.Max(0, CurrentHealth - damage);
             Debug.Log("damage taken: " + damage);
@@ -113,16 +114,16 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     {
         //Make my camera follow the person who killed me (put some transform here)
         //Disable my player controller
-        _photonView.RPC("RPC_SetMyControllerActivity", RpcTarget.All, _photonView.ViewID, false);
+        PhotonView.RPC("RPC_SetMyControllerActivity", RpcTarget.All, PhotonView.ViewID, false);
         //Wait for X seconds until my respawn
 
         //Reset to full health
-        _photonView.RPC("RPC_RefillTankHealth", RpcTarget.All, _photonView.ViewID);
+        PhotonView.RPC("RPC_RefillTankHealth", RpcTarget.All, PhotonView.ViewID);
 
         //Move my controller to another spawn point
-        _photonView.RPC("RPC_MoveMyControllerToAnotherSpawn", RpcTarget.All, _photonView.ViewID);
+        PhotonView.RPC("RPC_MoveMyControllerToAnotherSpawn", RpcTarget.All, PhotonView.ViewID);
         //Enable my player controller
-        _photonView.RPC("RPC_SetMyControllerActivity", RpcTarget.All, _photonView.ViewID, true);
+        PhotonView.RPC("RPC_SetMyControllerActivity", RpcTarget.All, PhotonView.ViewID, true);
         //Make my camera follow me again
     }
 
@@ -130,7 +131,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     [PunRPC]
     public void RPC_SetMyControllerActivity(int controllerViewID, bool activity)
     {
-        if (_photonView.ViewID == controllerViewID)
+        if (PhotonView.ViewID == controllerViewID)
         {
             gameObject.SetActive(activity);
         }
@@ -139,7 +140,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     [PunRPC]
     public void RPC_MoveMyControllerToAnotherSpawn(int controllerViewID)
     {
-        if(_photonView.ViewID == controllerViewID)
+        if(PhotonView.ViewID == controllerViewID)
         {
             System.Random r = new System.Random();
             int spawnIndex = r.Next(4);
@@ -154,7 +155,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     [PunRPC]
     public void RPC_RefillTankHealth(int controllerViewID)
     {
-        if (_photonView.ViewID == controllerViewID)
+        if (PhotonView.ViewID == controllerViewID)
         {
             CurrentHealth = MaxHelath;
         }
