@@ -38,7 +38,9 @@ public class Projectile : MonoBehaviour
             {
                 PhotonView _pv = other.gameObject.GetComponent<PhotonView>();
                 if(_pv.IsMine)
-                { other.gameObject.GetComponent<IDamagable>()?.TakeDamage(_gunOrigin.Damage); }              
+                { 
+                    other.gameObject.GetComponent<IDamagable>()?.TakeDamage(_gunOrigin.Damage); 
+                }
                 _didHitOnce = true; 
             }
 

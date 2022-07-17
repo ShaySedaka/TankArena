@@ -193,3 +193,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tank: {fileID: 0}
   _pickupDuration: 0
+  _spawnPointIndex: 0
+--- !u!54 &2879123736842465734
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8850233652876137299}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

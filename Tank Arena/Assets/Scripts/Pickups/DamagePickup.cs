@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPickup : Pickup
+public class DamagePickup : Pickup
 {
+    [SerializeField] private float _damageBonus = 2;
+
     public override void ApplyPickUpEffect()
     {
-        _tank.Heal(_tank.MaxHelath * 0.5f);
+        _tank.Canon.Damage += _damageBonus;
     }
 
     public override void RemovePickupEffect()
     {
-        
+        _tank.Canon.Damage -= _damageBonus;
     }
 }

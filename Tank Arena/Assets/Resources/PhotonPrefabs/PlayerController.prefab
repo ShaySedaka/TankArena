@@ -4238,6 +4238,7 @@ MonoBehaviour:
   _outline: {fileID: 1440443311607530892}
   _tankHealthbar: {fileID: 6241979076099457917}
   _playerManager: {fileID: 0}
+  _canon: {fileID: 2535597699874618390}
 --- !u!114 &1413795432061628584
 MonoBehaviour:
   m_ObjectHideFlags: 0

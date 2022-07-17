@@ -20,9 +20,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     private float _machineGunFireRate;
     private float _machineGunRadius;
 
-    private float _cannonDMG;
-    private float _cannonCoolDown;
-    private float _cannonProjectileSpeed;
+    [SerializeField] private Gun _canon;
 
     public float MovementSpeed { get => _movementSpeed; set => _movementSpeed = value; }
     public float MaxHelath { get => _maxHealth; set => _maxHealth = value; }
@@ -35,6 +33,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     }
 
     public PlayerManager PlayerManager { get => _playerManager; set => _playerManager = value; }
+    public Gun Canon { get => _canon; set => _canon = value; }
 
     private void Awake()
     {
@@ -50,12 +49,6 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
         }
     }
 
-    public void Heal(float amount)
-    {
-        CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, MaxHelath);
-    }
-
-
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
         if(!_photonView.IsMine && targetPlayer == _photonView.Owner)
@@ -68,10 +61,38 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
 
     #region Damage Management
 
+    public void Heal(float healAmount)
+    {
+        _photonView.RPC("RPC_Heal", RpcTarget.All, healAmount, _photonView.ViewID);
+    }
+
+    [PunRPC]
+    private void RPC_Heal(float healAmount, int viewID)
+    {
+        if (_photonView.ViewID == viewID)
+        {
+            CurrentHealth = Mathf.Min(MaxHelath, CurrentHealth + healAmount);
+        }
+    }
+
     public void TakeDamage(float damage)
     {
         _photonView.RPC("RPC_TakeDamage", RpcTarget.All, damage, _photonView.ViewID); 
 
+    }
+
+    [PunRPC]
+    private void RPC_TakeDamage(float damage, int viewID)
+    {
+        if(_photonView.ViewID == viewID)
+        {
+            CurrentHealth = Mathf.Max(0, CurrentHealth - damage);
+            Debug.Log("damage taken: " + damage);
+            if (CurrentHealth == 0)
+            {
+                Die(viewID);
+            }
+        }
     }
 
     public void Die(int viewIDWhoDied)
@@ -81,21 +102,6 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
         Debug.Log("Rewpawning Tank");
         RespawnController(viewIDWhoDied);
     }
-
-    [PunRPC]
-    void RPC_TakeDamage(float damage, int viewID)
-    {
-        if(_photonView.ViewID == viewID)
-        {
-            CurrentHealth = Mathf.Max(0, CurrentHealth - damage);
-             
-            if (CurrentHealth == 0)
-            {
-                Die(viewID);
-            }
-        }
-    }
-
 
 
     #endregion
