@@ -17,6 +17,7 @@ public class ScoreManager : Singleton<ScoreManager>
         if(PlayerScores.Count == PhotonNetwork.CurrentRoom.PlayerCount)
         {
             GameUIManager.Instance.Setup();
+            RoomManager.Instance.AssignSpawnPoints();
         }
     }
 

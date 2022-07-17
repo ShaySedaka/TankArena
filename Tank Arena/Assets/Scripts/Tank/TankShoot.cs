@@ -45,7 +45,6 @@ public class TankShoot : MonoBehaviour
 
     public void Shoot()
     {
-        Debug.Log("SHOOOOOT!");
         _cannonWeapon.Use();
     }
 

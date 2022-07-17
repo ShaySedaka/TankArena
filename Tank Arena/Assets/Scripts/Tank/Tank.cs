@@ -15,6 +15,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     [SerializeField] private TankHealthbar _tankHealthbar;
 
 
+
     [SerializeField] private PlayerManager _playerManager;
     private float _machineGunDMG;
     private float _machineGunFireRate;
@@ -119,8 +120,9 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
         //Reset to full health
         PhotonView.RPC("RPC_RefillTankHealth", RpcTarget.All, PhotonView.ViewID);
 
-        //Move my controller to another spawn point
-        PhotonView.RPC("RPC_MoveMyControllerToAnotherSpawn", RpcTarget.All, PhotonView.ViewID);
+        //Move my controller to another spawn point   
+        PhotonView.RPC("RPC_MoveMyControllerToAnotherSpawn", RpcTarget.All, PhotonView.ViewID, 2);
+
         //Enable my player controller
         PhotonView.RPC("RPC_SetMyControllerActivity", RpcTarget.All, PhotonView.ViewID, true);
         //Make my camera follow me again
@@ -137,16 +139,13 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     }
 
     [PunRPC]
-    public void RPC_MoveMyControllerToAnotherSpawn(int controllerViewID)
+    public void RPC_MoveMyControllerToAnotherSpawn(int controllerViewID, int spawnPointIndex)
     {
         if(PhotonView.ViewID == controllerViewID)
         {
-            System.Random r = new System.Random();
-            int spawnIndex = r.Next(4);
-
             List<Transform> spawnPoints = RoomManager.Instance.SpawnPoints;
 
-            transform.parent.transform.position = spawnPoints[2].position;
+            transform.parent.transform.position = spawnPoints[spawnPointIndex].position;
             transform.localPosition = Vector3.zero;
         }
     }

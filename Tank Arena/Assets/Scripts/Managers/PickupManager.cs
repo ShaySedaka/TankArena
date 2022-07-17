@@ -14,7 +14,6 @@ public class PickupManager : Singleton<PickupManager>
         SetupScoreOrbSpawnPoints();
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("Starting the ScoreOrb Spawning Coroutine");
             StartCoroutine(PeriodicallySpawnPickups());
             StartCoroutine(PeriodicallySpawnScoreOrbs());
         }
@@ -91,7 +90,6 @@ public class PickupManager : Singleton<PickupManager>
             {
                 return -1;
             }
-            Debug.Log("random index: " + index);
             spawnPointTransform = _pickupsSpawnPoints[index];
 
             _checkedIndexes.Add(index);
@@ -99,12 +97,10 @@ public class PickupManager : Singleton<PickupManager>
             if(_pickupsSpawnPointsStatus[spawnPointTransform] == true)
             {
                 foundPoint = true;
-                Debug.Log("Available Spawn Point Index: " + index);
                 return index;
             }
         }
 
-        Debug.Log("Available Spawn Point Index NOT FOUND");
         return -1;
     }
 
@@ -156,7 +152,6 @@ public class PickupManager : Singleton<PickupManager>
                 if (indexToSpawnAt >= 0)
                 {
                     _photonView.RPC("RPC_SpawnScoreOrbAtSpawnPoint", RpcTarget.All, indexToSpawnAt);
-                    Debug.Log("Spawning Score Orb");
                 }
             }
 
@@ -181,7 +176,6 @@ public class PickupManager : Singleton<PickupManager>
             {
                 return -1;
             }
-            Debug.Log("random index: " + index);
             spawnPointTransform = _scoreOrbSpawnPoints[index];
 
             _checkedIndexes.Add(index);
@@ -189,12 +183,9 @@ public class PickupManager : Singleton<PickupManager>
             if (_scoreOrbSpawnPointsStatus[spawnPointTransform] == true)
             {
                 foundPoint = true;
-                Debug.Log("Available Spawn Point Index: " + index);
                 return index;
             }
         }
-
-        Debug.Log("Available Spawn Point Index NOT FOUND");
         return -1;
     }
 

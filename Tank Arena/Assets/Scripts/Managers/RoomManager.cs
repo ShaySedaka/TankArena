@@ -11,12 +11,17 @@ public class RoomManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] public Camera MainCamera;
     [SerializeField] public List<Transform> SpawnPoints;
+    [SerializeField] private int _clientTankSpawnPointIndex;
+    [SerializeField] private Tank _localTank;
 
     public int PlayersSpawned = 0;
 
     public static RoomManager Instance;
 
     public PhotonView PhotonView;
+
+    public int ClientTankSpawnPointIndex { get => _clientTankSpawnPointIndex;}
+    public Tank LocalTank { get => _localTank; set => _localTank = value; }
 
     private void Awake()
     {
@@ -27,6 +32,30 @@ public class RoomManager : MonoBehaviourPunCallbacks
         }
         DontDestroyOnLoad(gameObject);
             Instance = this;
+    }
+
+    public void AssignSpawnPoints()
+    {
+        if(PhotonNetwork.IsMasterClient)
+        {
+            int spawnPointIndex = 0;
+            foreach (KeyValuePair<int, int> entry in ScoreManager.Instance.PlayerScores)
+            {
+                PhotonView.RPC("RPC_AssignSpawnPoint", RpcTarget.All, entry.Key, spawnPointIndex);
+                spawnPointIndex++;    
+                
+            }
+        }
+    }
+
+    [PunRPC]
+    private void RPC_AssignSpawnPoint(int viewID, int spawnPointIndex)
+    {
+        if(viewID == _localTank.PhotonView.ViewID)
+        {
+            _clientTankSpawnPointIndex = spawnPointIndex;
+            Debug.Log("I got index: " + _clientTankSpawnPointIndex);
+        }
     }
 
     public override void OnEnable()
