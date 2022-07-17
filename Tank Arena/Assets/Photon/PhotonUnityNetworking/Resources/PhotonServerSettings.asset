@@ -50,6 +50,7 @@ MonoBehaviour:
   - RPC_SpawnScoreOrbAtSpawnPoint
   - RPC_SpawnPickupsAtSpawnPoint
   - RPC_Heal
+  - RPC_TankCreated
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

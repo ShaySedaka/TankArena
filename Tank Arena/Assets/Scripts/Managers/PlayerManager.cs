@@ -46,7 +46,7 @@ public class PlayerManager : MonoBehaviour
        _instantiatedController = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), 
         roomManager.SpawnPoints[(roomManager.PlayersSpawned++)% (roomManager.SpawnPoints.Count)].position, Quaternion.identity, 0, new object[] { _photonView.ViewID });
 
-        _photonView.RPC("RPC_TankCreated", RpcTarget.All, _instantiatedController.GetComponent<PhotonView>().ViewID);
+        _photonView.RPC("RPC_TankCreated", RpcTarget.All, _instantiatedController.GetComponentInChildren<PhotonView>().ViewID);
         AssignCameraFollowToPlayerController();
     }
 
