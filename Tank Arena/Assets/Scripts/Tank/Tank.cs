@@ -76,14 +76,14 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, int shooterViewID)
     {
-        PhotonView.RPC("RPC_TakeDamage", RpcTarget.All, damage, PhotonView.ViewID); 
+        PhotonView.RPC("RPC_TakeDamage", RpcTarget.All, damage, PhotonView.ViewID, shooterViewID); 
 
     }
 
     [PunRPC]
-    private void RPC_TakeDamage(float damage, int viewID)
+    private void RPC_TakeDamage(float damage, int viewID, int shooterViewID)
     {
         if(PhotonView.ViewID == viewID)
         {
@@ -91,16 +91,15 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
             Debug.Log("damage taken: " + damage);
             if (CurrentHealth == 0)
             {
-                Die(viewID);
+                Die(viewID, shooterViewID);
             }
         }
     }
 
-    public void Die(int viewIDWhoDied)
+    public void Die(int viewIDWhoDied, int shooterViewID)
     {
-        Debug.Log("A Tank died today. Shame.");
-
-        Debug.Log("Rewpawning Tank");
+        PhotonView shooterPV = PhotonView.Find(shooterViewID);
+        ScoreManager.Instance.AddScoreForKill(shooterPV);
         RespawnController(viewIDWhoDied);
     }
 

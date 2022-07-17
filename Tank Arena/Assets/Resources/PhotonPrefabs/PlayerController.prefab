@@ -3880,6 +3880,7 @@ MonoBehaviour:
   _projectile: {fileID: 3862921400060111314, guid: 64e344fd51bc2ea4897cb43536d8d3a8,
     type: 3}
   _tankCollider: {fileID: 6350996569176309533}
+  _tank: {fileID: 2861386515041498413}
 --- !u!114 &3588963632481730567
 MonoBehaviour:
   m_ObjectHideFlags: 0

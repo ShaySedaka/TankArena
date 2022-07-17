@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ScoreManager : Singleton<ScoreManager>
 {
+    [SerializeField] private int _scoreForKill = 1;
+
     private Dictionary<int, int> _playerScores = new Dictionary<int, int>();
 
     public Dictionary<int, int> PlayerScores { get => _playerScores; }
@@ -22,5 +24,10 @@ public class ScoreManager : Singleton<ScoreManager>
     {
         PlayerScores[tankPV.ViewID] += scoreToAdd;
         GameUIManager.Instance.UpdateScoreForTank(tankPV.Owner.NickName, PlayerScores[tankPV.ViewID]);
+    }
+
+    public void AddScoreForKill(PhotonView tankPV)
+    {
+        AddScoreToTank(tankPV, _scoreForKill);
     }
 }

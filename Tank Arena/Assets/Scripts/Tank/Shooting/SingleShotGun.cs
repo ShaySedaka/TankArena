@@ -10,6 +10,7 @@ public class SingleShotGun : Gun
     [SerializeField] PhotonView _photonView;
     [SerializeField] GameObject _projectile;
     [SerializeField] Collider _tankCollider;
+    [SerializeField] Tank _tank;
     
     public override void Use()
     {
@@ -41,7 +42,7 @@ public class SingleShotGun : Gun
         if(_photonView.ViewID == shooterViewID)
         {
             GameObject projectile = Instantiate(_projectile, _shootingOriginPoint);
-            projectile.GetComponent<Projectile>().SetUp(this, _tankCollider);
+            projectile.GetComponent<Projectile>().SetUp(this, _tankCollider, _tank.PhotonView.ViewID);
         }
     }
 }

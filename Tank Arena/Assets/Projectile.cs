@@ -11,7 +11,10 @@ public class Projectile : MonoBehaviour
     [SerializeField] Collider _tankOriginCollider;
     [SerializeField] float _movementSpeed;
 
+    private int _shooterViewID;
     private bool _didHitOnce = false;
+
+    public int ShooterViewID { get => _shooterViewID; }
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +42,7 @@ public class Projectile : MonoBehaviour
                 PhotonView _pv = other.gameObject.GetComponent<PhotonView>();
                 if(_pv != null && _pv.IsMine)
                 { 
-                    other.gameObject.GetComponent<IDamagable>()?.TakeDamage(_gunOrigin.Damage); 
+                    other.gameObject.GetComponent<IDamagable>()?.TakeDamage(_gunOrigin.Damage, _shooterViewID); 
                 }
                 _didHitOnce = true; 
             }
@@ -65,8 +68,9 @@ public class Projectile : MonoBehaviour
 
     }
 
-    public void SetUp(Gun gun, Collider tankCollider)
+    public void SetUp(Gun gun, Collider tankCollider, int shooterViewID)
     {
+        _shooterViewID = shooterViewID;
         _gunOrigin = gun;
         _tankOriginCollider = tankCollider;
     }

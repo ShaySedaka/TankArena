@@ -230,3 +230,4 @@ MonoBehaviour:
   _tank: {fileID: 0}
   _pickupDuration: 0
   _spawnPointIndex: 0
+  _scoreToAdd: 2
