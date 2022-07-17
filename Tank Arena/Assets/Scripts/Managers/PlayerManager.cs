@@ -44,9 +44,9 @@ public class PlayerManager : MonoBehaviour
 
         //Instantiate Player Controller
        _instantiatedController = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), 
-           roomManager.SpawnPoints[(roomManager.PlayersSpawned++)% (roomManager.SpawnPoints.Count)].position, Quaternion.identity, 0, new object[] { _photonView.ViewID });
-        
+        roomManager.SpawnPoints[(roomManager.PlayersSpawned++)% (roomManager.SpawnPoints.Count)].position, Quaternion.identity, 0, new object[] { _photonView.ViewID });
 
+        _photonView.RPC("RPC_TankCreated", RpcTarget.All, _instantiatedController.GetComponent<PhotonView>().ViewID);
         AssignCameraFollowToPlayerController();
     }
 
@@ -54,6 +54,12 @@ public class PlayerManager : MonoBehaviour
     {
         
        _cameraFollowScript.SetFollowTarget(_instantiatedController.GetComponentInChildren<Rigidbody>().transform);
+    }
+
+    [PunRPC]
+    private void RPC_TankCreated(int viewID)
+    {
+        ScoreManager.Instance.AddTankToScoreBoard(viewID);
     }
 
 }
