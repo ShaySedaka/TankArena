@@ -42,7 +42,7 @@ public class PickupManager : Singleton<PickupManager>
 
 
     [SerializeField] private GameObject _pickupsSpawnPointsHolder;
-    [SerializeField] private GameObject _pickupsPrefabs; // TODO: Change this to List<GO>
+    [SerializeField] private List<GameObject> _pickupsPrefabs; // TODO: Change this to List<GO>
 
     // bool is for avilability of spawnpoint 
     [SerializeField] private Dictionary<Transform, bool> _pickupsSpawnPointsStatus = new Dictionary<Transform, bool>();
@@ -60,7 +60,8 @@ public class PickupManager : Singleton<PickupManager>
 
                 if(indexToSpawnAt >= 0)
                 {
-                    _photonView.RPC("RPC_SpawnPickupsAtSpawnPoint", RpcTarget.All, indexToSpawnAt);
+                    int pickupsIndex = ChooseRandomPickupPrefabIndex();
+                    _photonView.RPC("RPC_SpawnPickupsAtSpawnPoint", RpcTarget.All, indexToSpawnAt, pickupsIndex);
                 }
             }
 
@@ -68,6 +69,11 @@ public class PickupManager : Singleton<PickupManager>
 
             yield return new WaitForSeconds(_pickupsCooldown);
         }
+    }
+
+    private int ChooseRandomPickupPrefabIndex()
+    {
+        return new System.Random().Next(_pickupsPrefabs.Count);
     }
 
     private int AvailablePickupsSpawnPointIndex()
@@ -103,9 +109,9 @@ public class PickupManager : Singleton<PickupManager>
     }
 
     [PunRPC]
-    private void RPC_SpawnPickupsAtSpawnPoint(int spawnPointIndex)
+    private void RPC_SpawnPickupsAtSpawnPoint(int spawnPointIndex, int pickupsIndex)
     {
-        GameObject scoreOrb = Instantiate(_pickupsPrefabs, _pickupsSpawnPoints[spawnPointIndex]);
+        GameObject scoreOrb = Instantiate(_pickupsPrefabs[pickupsIndex], _pickupsSpawnPoints[spawnPointIndex]);
         scoreOrb.GetComponentInChildren<Pickup>().Setup(spawnPointIndex);
         scoreOrb.transform.parent = null;
 

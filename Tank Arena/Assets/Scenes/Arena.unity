@@ -1067,8 +1067,10 @@ MonoBehaviour:
   _activePickups: 0
   _maxPickups: 3
   _pickupsSpawnPointsHolder: {fileID: 334671150}
-  _pickupsPrefabs: {fileID: 7495854542567655959, guid: 77c2108e75a6da04b8a9c2d5f73fc910,
-    type: 3}
+  _pickupsPrefabs:
+  - {fileID: 7495854542567655959, guid: 77c2108e75a6da04b8a9c2d5f73fc910, type: 3}
+  - {fileID: 378334508266577950, guid: e94711451283b5e4ea97dd9bec1c8506, type: 3}
+  - {fileID: 1609426563364382538, guid: 482a23eb854875b4ea0a9d1394443a6b, type: 3}
   _scoreOrbsCooldown: 4
   _activeScoreOrbs: 0
   _maxScoreOrbs: 3
