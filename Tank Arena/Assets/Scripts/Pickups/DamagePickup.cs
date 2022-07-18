@@ -8,17 +8,12 @@ public class DamagePickup : Pickup
 
     public override void ApplyPickUpEffect()
     {
-        if (_tank.photonView.IsMine)
-        {
-            _tank.Canon.Damage += _damageBonus;
-        }
+
+        _tank.Canon.Damage += _damageBonus;
     }
 
     public override void RemovePickupEffect()
     {
-        if (_tank.photonView.IsMine)
-        {
-            _tank.Canon.Damage -= _damageBonus;
-        }
+        _tank.Canon.Damage -= _damageBonus;
     }
 }
