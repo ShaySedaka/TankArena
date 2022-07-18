@@ -13,6 +13,7 @@ public class GameUIManager : Singleton<GameUIManager>
     [SerializeField] private List<TMP_Text> _tankScores;
     [SerializeField] public RespawnPopup RespawnPopup;
     [SerializeField] public ReloadingPanel ReloadingPanel;
+    [SerializeField] public GameOverPanel GameOverPanel;
 
     public void Setup()
     { 

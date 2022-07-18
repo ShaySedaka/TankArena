@@ -14,6 +14,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     [SerializeField] private Outline _outline;
     [SerializeField] private TankHealthbar _tankHealthbar;
     [SerializeField] private PlayerController _playerController;
+    [SerializeField] private InputHandler _inputHandler;
 
     [SerializeField] private GameObject _tankSihlouette;
 
@@ -40,6 +41,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     public Gun Canon { get => _canon; set => _canon = value; }
     public PhotonView PhotonView { get => _photonView; }
     public float RespawnTime { get => _respawnTime; }
+    public InputHandler InputHandler { get => _inputHandler; set => _inputHandler = value; }
 
     private void Awake()
     {

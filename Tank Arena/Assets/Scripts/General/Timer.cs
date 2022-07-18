@@ -18,6 +18,7 @@ public class Timer : MonoBehaviour
             {
                 _timeRemaining = 0;
                 _timerIsRunning = false;
+                EndMatch();
             }
         }
         GameUIManager.Instance.TimerToString(_timeRemaining);
@@ -26,5 +27,11 @@ public class Timer : MonoBehaviour
     public void StartTimer()
     {
         _timerIsRunning = true;
+    }
+
+    private void EndMatch()
+    {
+        RoomManager.Instance.LocalTank.InputHandler.enabled = false;
+        GameUIManager.Instance.GameOverPanel.Show(ScoreManager.Instance.GetWinner());
     }
 }

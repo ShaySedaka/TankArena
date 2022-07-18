@@ -1,4 +1,5 @@
 using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,21 @@ public class ScoreManager : Singleton<ScoreManager>
     {
         PlayerScores[tankPV.ViewID] += scoreToAdd;
         GameUIManager.Instance.UpdateScoreForTank(tankPV.Owner.NickName, PlayerScores[tankPV.ViewID]);
+    }
+
+    public string GetWinner()
+    {
+        int winnerID = RoomManager.Instance.LocalTank.PhotonView.ViewID;
+        foreach (KeyValuePair<int, int> entry in PlayerScores)
+        {
+            if(entry.Value > PlayerScores[winnerID])
+            {
+                winnerID = entry.Key;
+            }
+        }
+
+        return PhotonView.Find(winnerID).Owner.NickName;
+
     }
 
     public void AddScoreForKill(PhotonView tankPV)

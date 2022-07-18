@@ -22,7 +22,6 @@ public class SingleShotGun : Gun
         if(_photonView.IsMine)
         {
             _timeSinceLastShot += Time.deltaTime;
-            Debug.Log(_timeSinceLastShot / _firingCooldown);
             GameUIManager.Instance.ReloadingPanel.DisplayReloadUI(_timeSinceLastShot / _firingCooldown);
         }
     }
