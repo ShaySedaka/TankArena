@@ -121,7 +121,9 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
         PhotonView.RPC("RPC_RefillTankHealth", RpcTarget.All, PhotonView.ViewID);
 
         //Move my controller to another spawn point   
-        PhotonView.RPC("RPC_MoveMyControllerToAnotherSpawn", RpcTarget.All, PhotonView.ViewID, 2);
+        System.Random rand = new System.Random();
+        int randomSpawnPointIndex = rand.Next(RoomManager.Instance.SpawnPoints.Count);
+        PhotonView.RPC("RPC_MoveMyControllerToAnotherSpawn", RpcTarget.All, PhotonView.ViewID, randomSpawnPointIndex);
 
         //Enable my player controller
         PhotonView.RPC("RPC_SetMyControllerActivity", RpcTarget.All, PhotonView.ViewID, true);
@@ -145,8 +147,9 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
         {
             List<Transform> spawnPoints = RoomManager.Instance.SpawnPoints;
 
-            transform.parent.transform.position = spawnPoints[spawnPointIndex].position;
-            transform.localPosition = Vector3.zero;
+            transform.position = spawnPoints[spawnPointIndex].position;
+            //transform.parent.transform.position = spawnPoints[spawnPointIndex].position;
+            //transform.localPosition = Vector3.zero;
         }
     }
 

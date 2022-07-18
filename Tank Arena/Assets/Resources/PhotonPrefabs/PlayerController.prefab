@@ -3874,7 +3874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Cannon
   Damage: 3
-  _firingCooldown: 3
+  _firingCooldown: 2
   _timeSinceLastShot: 0
   _shotRange: 10
   _shootingOriginPoint: {fileID: 4408824826715092358}
@@ -4204,8 +4204,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.91, y: 1.79, z: 2.17}
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Size: {x: 1.91, y: 1.79, z: 2.4544427}
+  m_Center: {x: 0, y: 0.9, z: -0.0058494806}
 --- !u!54 &6350996569176309520
 Rigidbody:
   m_ObjectHideFlags: 0
