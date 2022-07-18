@@ -13,8 +13,11 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     [SerializeField] private PhotonView _photonView;
     [SerializeField] private Outline _outline;
     [SerializeField] private TankHealthbar _tankHealthbar;
+    [SerializeField] private PlayerController _playerController;
 
+    [SerializeField] private GameObject _tankSihlouette;
 
+    [SerializeField] private float _respawnTime;
 
     [SerializeField] private PlayerManager _playerManager;
     private float _machineGunDMG;
@@ -36,6 +39,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     public PlayerManager PlayerManager { get => _playerManager; set => _playerManager = value; }
     public Gun Canon { get => _canon; set => _canon = value; }
     public PhotonView PhotonView { get => _photonView; }
+    public float RespawnTime { get => _respawnTime; }
 
     private void Awake()
     {
@@ -101,7 +105,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     {
         PhotonView shooterPV = PhotonView.Find(shooterViewID);
         ScoreManager.Instance.AddScoreForKill(shooterPV);
-        RespawnController(viewIDWhoDied);
+        RespawnController();
     }
 
 
@@ -110,12 +114,15 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     #region Respawn
 
 
-    public void RespawnController(int controllerViewID)
+    public void RespawnController()
     {
         //Make my camera follow the person who killed me (put some transform here)
+
+        // Disable the tank, and respawn it after the respawn timer passes
+        _playerController.StartRespawnCoroutine();
+
         //Disable my player controller
-        PhotonView.RPC("RPC_SetMyControllerActivity", RpcTarget.All, PhotonView.ViewID, false);
-        //Wait for X seconds until my respawn
+        //PhotonView.RPC("RPC_SetMyControllerActivity", RpcTarget.All, PhotonView.ViewID, false);
 
         //Reset to full health
         PhotonView.RPC("RPC_RefillTankHealth", RpcTarget.All, PhotonView.ViewID);
@@ -125,9 +132,16 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
         int randomSpawnPointIndex = rand.Next(RoomManager.Instance.SpawnPoints.Count);
         PhotonView.RPC("RPC_MoveMyControllerToAnotherSpawn", RpcTarget.All, PhotonView.ViewID, randomSpawnPointIndex);
 
-        //Enable my player controller
-        PhotonView.RPC("RPC_SetMyControllerActivity", RpcTarget.All, PhotonView.ViewID, true);
         //Make my camera follow me again
+    }
+
+    public IEnumerator RespawnMyControllerAfterDelay()
+    {
+        PhotonView.RPC("RPC_SetMyControllerActivity", RpcTarget.All, PhotonView.ViewID, false);
+
+        yield return new WaitForSeconds(RespawnTime);
+
+        PhotonView.RPC("RPC_SetMyControllerActivity", RpcTarget.All, PhotonView.ViewID, true);
     }
 
 
@@ -137,6 +151,10 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
         if (PhotonView.ViewID == controllerViewID)
         {
             gameObject.SetActive(activity);
+            if(PhotonView.IsMine)
+            {
+                _tankSihlouette.SetActive(!activity);
+            }
         }
     }
 
@@ -148,6 +166,11 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
             List<Transform> spawnPoints = RoomManager.Instance.SpawnPoints;
 
             transform.position = spawnPoints[spawnPointIndex].position;
+            if (PhotonView.IsMine)
+            {
+                _tankSihlouette.transform.position = spawnPoints[spawnPointIndex].position;
+            }
+
             //transform.parent.transform.position = spawnPoints[spawnPointIndex].position;
             //transform.localPosition = Vector3.zero;
         }
