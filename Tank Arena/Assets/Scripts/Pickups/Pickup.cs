@@ -20,8 +20,10 @@ public abstract class Pickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-        _tank = other.GetComponent<Tank>();
+        if (other.GetComponent<Tank>() != null)
+        {
+            _tank = other.GetComponent<Tank>();
+        }
         if(_tank != null)
         {
             StartCoroutine(PickupBegin());
