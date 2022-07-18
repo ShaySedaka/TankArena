@@ -124,6 +124,9 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
         //Disable my player controller
         //PhotonView.RPC("RPC_SetMyControllerActivity", RpcTarget.All, PhotonView.ViewID, false);
 
+        // Present Respawn Timer for dead player
+        PhotonView.RPC("RPC_PresentRespawnTimer", RpcTarget.All, PhotonView.ViewID);
+
         //Reset to full health
         PhotonView.RPC("RPC_RefillTankHealth", RpcTarget.All, PhotonView.ViewID);
 
@@ -144,6 +147,14 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
         PhotonView.RPC("RPC_SetMyControllerActivity", RpcTarget.All, PhotonView.ViewID, true);
     }
 
+    [PunRPC]
+    private void RPC_PresentRespawnTimer(int controllerViewID)
+    {
+        if(PhotonView.ViewID == controllerViewID && PhotonView.IsMine)
+        {
+            GameUIManager.Instance.RespawnPopup.Present();
+        }
+    }
 
     [PunRPC]
     public void RPC_SetMyControllerActivity(int controllerViewID, bool activity)
