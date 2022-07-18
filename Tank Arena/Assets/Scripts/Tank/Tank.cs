@@ -177,6 +177,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
             List<Transform> spawnPoints = RoomManager.Instance.SpawnPoints;
 
             transform.position = spawnPoints[spawnPointIndex].position;
+            transform.rotation = Quaternion.identity;
             if (PhotonView.IsMine)
             {
                 _tankSihlouette.transform.position = spawnPoints[spawnPointIndex].position;

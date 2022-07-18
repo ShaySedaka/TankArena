@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
 
     public void StartRespawnCoroutine()
     {
-        /* The coroutine for respawning the tank HAS to be called from outside of tank. 
+        /* 
+         * The coroutine for respawning the tank HAS to be called from outside of tank. 
          * Calling the coroutine from inside the tank stops it. Coroutines probably still rely on Unity's update
          * or some other callback system
          */
