@@ -42,9 +42,18 @@ public class PlayerManager : MonoBehaviour
 
         Debug.Log("Creating player controller");
 
+        int playerIndex = 0;
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        {
+            if(PhotonNetwork.PlayerList[i].UserId == PhotonNetwork.LocalPlayer.UserId)
+            {
+                playerIndex = i;
+            }
+        }
+
         //Instantiate Player Controller
-       _instantiatedController = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), 
-        roomManager.SpawnPoints[(roomManager.PlayersSpawned++)% (roomManager.SpawnPoints.Count)].position, Quaternion.identity, 0, new object[] { _photonView.ViewID });
+        _instantiatedController = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), 
+        roomManager.SpawnPoints[playerIndex].position, Quaternion.identity, 0, new object[] { _photonView.ViewID });
         roomManager.LocalTank = _instantiatedController.GetComponentInChildren<Tank>();
         _photonView.RPC("RPC_TankCreated", RpcTarget.All, _instantiatedController.GetComponentInChildren<PhotonView>().ViewID);
         AssignCameraFollowToPlayerController();
