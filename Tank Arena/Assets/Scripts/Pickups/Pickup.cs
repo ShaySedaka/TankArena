@@ -29,6 +29,7 @@ public abstract class Pickup : MonoBehaviour
         if(_tank != null)
         {
             StartCoroutine(PickupBegin());
+            GetComponentInChildren<SphereCollider>().enabled = false;
             Debug.Log("Pickup: " + pickupName);
             transform.parent.transform.position = new Vector3(_pickupManager.transform.position.x, _pickupManager.transform.position.y, _pickupManager.transform.position.z);
             transform.parent.gameObject.GetComponent<ObjectBounce>().StartHeight = _pickupManager.transform.position.y;
@@ -46,10 +47,9 @@ public abstract class Pickup : MonoBehaviour
         yield return new WaitForSeconds(_pickupDuration);
         RemovePickupEffect();
         yield return new WaitForSeconds(3);
-        //Destroy(transform.parent.gameObject);
         transform.parent.gameObject.SetActive(false);
-
     }
+
     public void Setup(int index)
     {
         _spawnPointIndex = index;
