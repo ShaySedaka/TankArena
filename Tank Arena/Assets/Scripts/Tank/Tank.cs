@@ -121,9 +121,6 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
         // Disable the tank, and respawn it after the respawn timer passes
         _playerController.StartRespawnCoroutine();
 
-        //Disable my player controller
-        //PhotonView.RPC("RPC_SetMyControllerActivity", RpcTarget.All, PhotonView.ViewID, false);
-
         // Present Respawn Timer for dead player
         PhotonView.RPC("RPC_PresentRespawnTimer", RpcTarget.All, PhotonView.ViewID);
 
