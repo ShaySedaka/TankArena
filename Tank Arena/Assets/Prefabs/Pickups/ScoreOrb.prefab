@@ -110,6 +110,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerUp_Sphere
       objectReference: {fileID: 0}
+    - target: {fileID: 5773399876510048642, guid: 84221c5d9e2cf0b488ddb37026596b45,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 5773399876510048643, guid: 84221c5d9e2cf0b488ddb37026596b45,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -123,17 +128,17 @@ PrefabInstance:
     - target: {fileID: 5773399876510048669, guid: 84221c5d9e2cf0b488ddb37026596b45,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 5773399876510048669, guid: 84221c5d9e2cf0b488ddb37026596b45,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 5773399876510048669, guid: 84221c5d9e2cf0b488ddb37026596b45,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 5773399876510048669, guid: 84221c5d9e2cf0b488ddb37026596b45,
         type: 3}

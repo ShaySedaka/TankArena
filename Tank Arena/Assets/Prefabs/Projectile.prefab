@@ -112,7 +112,7 @@ MonoBehaviour:
   _lifetimeInSeconds: 3
   _gunOrigin: {fileID: 0}
   _tankOriginCollider: {fileID: 0}
-  _movementSpeed: 30
+  _movementSpeed: 55
 --- !u!54 &5606298734056574513
 Rigidbody:
   m_ObjectHideFlags: 0
