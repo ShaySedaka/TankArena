@@ -12,6 +12,7 @@ public class GameUIManager : Singleton<GameUIManager>
     [SerializeField] private List<TMP_Text> _tankNicknames;
     [SerializeField] private List<TMP_Text> _tankScores;
     [SerializeField] public RespawnPopup RespawnPopup;
+    [SerializeField] public ReloadingPanel ReloadingPanel;
 
     public void Setup()
     { 

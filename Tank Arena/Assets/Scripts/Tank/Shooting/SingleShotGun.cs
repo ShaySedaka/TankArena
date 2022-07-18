@@ -14,7 +14,17 @@ public class SingleShotGun : Gun
 
     private void Update()
     {
-        _timeSinceLastShot += Time.deltaTime;
+        HandleReload();
+    }
+
+    private void HandleReload()
+    {
+        if(_photonView.IsMine)
+        {
+            _timeSinceLastShot += Time.deltaTime;
+            Debug.Log(_timeSinceLastShot / _firingCooldown);
+            GameUIManager.Instance.ReloadingPanel.DisplayReloadUI(_timeSinceLastShot / _firingCooldown);
+        }
     }
 
     public override void Use()
