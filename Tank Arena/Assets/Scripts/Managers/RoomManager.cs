@@ -13,6 +13,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
     [SerializeField] public List<Transform> SpawnPoints;
     [SerializeField] private int _clientTankSpawnPointIndex;
     [SerializeField] private Tank _localTank;
+    [SerializeField] private Timer _timer;
+
+
+    private bool _allPlayersReady;
 
     public int PlayersSpawned = 0;
 
@@ -34,29 +38,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
             Instance = this;
     }
 
-    public void AssignSpawnPoints()
-    {
-        if(PhotonNetwork.IsMasterClient)
-        {
-            int spawnPointIndex = 0;
-            foreach (KeyValuePair<int, int> entry in ScoreManager.Instance.PlayerScores)
-            {
-                PhotonView.RPC("RPC_AssignSpawnPoint", RpcTarget.All, entry.Key, spawnPointIndex);
-                spawnPointIndex++;    
-                
-            }
-        }
-    }
-
-    [PunRPC]
-    private void RPC_AssignSpawnPoint(int viewID, int spawnPointIndex)
-    {
-        if(viewID == _localTank.PhotonView.ViewID)
-        {
-            _clientTankSpawnPointIndex = spawnPointIndex;
-            Debug.Log("I got index: " + _clientTankSpawnPointIndex);
-        }
-    }
 
     public override void OnEnable()
     {
@@ -71,13 +52,28 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     }
 
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         if(scene.buildIndex == 1)
         {
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerManager"), Vector3.zero, Quaternion.identity);
         }
+    }
+
+    public void PlayersAreReady()
+    {
+        _allPlayersReady = true;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonView.RPC("RPC_StartMatchTimer", RpcTarget.All);
+        }
+        
+    }
+
+    [PunRPC]
+    private void RPC_StartMatchTimer()
+    {
+        _timer.StartTimer();
     }
 
     #region Photon Callbacks
