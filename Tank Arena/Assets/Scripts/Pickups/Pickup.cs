@@ -6,6 +6,8 @@ public abstract class Pickup : MonoBehaviour
 {
     private PickupManager _pickupManager;
 
+    [SerializeField] string pickupName;
+ 
     [SerializeField] protected Tank _tank;
 
     [SerializeField] private float _pickupDuration;
@@ -27,6 +29,7 @@ public abstract class Pickup : MonoBehaviour
         if(_tank != null)
         {
             StartCoroutine(PickupBegin());
+            Debug.Log("Pickup: " + pickupName);
             transform.parent.transform.position = new Vector3(_pickupManager.transform.position.x, _pickupManager.transform.position.y, _pickupManager.transform.position.z);
             transform.parent.gameObject.GetComponent<ObjectBounce>().StartHeight = _pickupManager.transform.position.y;
         }

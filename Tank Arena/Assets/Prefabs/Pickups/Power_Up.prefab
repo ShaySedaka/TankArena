@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91090d1e96ca649439510cd2d70aa797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupName: Speed
   _tank: {fileID: 0}
   _pickupDuration: 5
   _spawnPointIndex: 0

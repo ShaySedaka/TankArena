@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2cc9551e9055840b2ef6e6bee76d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupName: DMG
   _tank: {fileID: 0}
   _pickupDuration: 5
   _spawnPointIndex: 0

@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394a9e915d1216c409f7408925201cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupName: Score
   _tank: {fileID: 0}
   _pickupDuration: 0
   _spawnPointIndex: 0

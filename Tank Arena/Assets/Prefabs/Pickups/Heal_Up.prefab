@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d586c25d3607a154288608ceea40bf37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupName: Heal
   _tank: {fileID: 0}
   _pickupDuration: 0
   _spawnPointIndex: 0
