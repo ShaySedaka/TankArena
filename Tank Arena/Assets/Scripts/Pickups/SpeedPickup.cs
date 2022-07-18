@@ -8,12 +8,18 @@ public class SpeedPickup : Pickup
 
     public override void ApplyPickUpEffect()
     {
-        _tank.MovementSpeed *= _speedFactor;
+        if (_tank.photonView.IsMine)
+        {
+            _tank.MovementSpeed *= _speedFactor;
+        }
     }
 
     public override void RemovePickupEffect()
     {
         Debug.Log("Removing Speed");
-        _tank.MovementSpeed /= _speedFactor;
+        if (_tank.photonView.IsMine)
+        {
+            _tank.MovementSpeed /= _speedFactor;
+        }
     }
 }
