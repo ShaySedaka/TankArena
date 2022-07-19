@@ -1,10 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using Photon.Pun;
+using TMPro;
 using UnityEngine;
 
 public class TankCanvas : MonoBehaviour
 {
     [SerializeField] private TankHealthbar _tankHealthbar;
+
+    [SerializeField] private TMP_Text _nickNameText;
 
     [SerializeField] private Tank _tank;
 
@@ -15,6 +17,7 @@ public class TankCanvas : MonoBehaviour
     {
         _tankHealthbar.Setup(_tank);
         _mainCamera = RoomManager.Instance.MainCamera;
+        _nickNameText.text = _tank.PhotonView.Owner.NickName;
     }
 
     // Update is called once per frame

@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tankHealthbar: {fileID: 6241979076099457917}
+  _nickNameText: {fileID: 6925923916389159995}
   _tank: {fileID: 2861386515041498413}
   _mainCamera: {fileID: 0}
 --- !u!1 &1729535293935416632
@@ -4912,7 +4913,7 @@ GameObject:
   - component: {fileID: 2418466805837927521}
   - component: {fileID: 6925923916389159995}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Nick Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
