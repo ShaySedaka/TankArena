@@ -15,6 +15,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     [SerializeField] private TankHealthbar _tankHealthbar;
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private InputHandler _inputHandler;
+    [SerializeField] private TopDownCharacterMover _tankMover;
 
     [SerializeField] private GameObject _tankSihlouette;
 
@@ -65,7 +66,11 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
         }
     }
 
-
+    public void DisablePlayerMovement()
+    {
+        _inputHandler.enabled = false;
+        _tankMover.enabled = false;
+    }
 
     #region Damage Management
 

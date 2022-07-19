@@ -31,7 +31,7 @@ public class Timer : MonoBehaviour
 
     private void EndMatch()
     {
-        RoomManager.Instance.LocalTank.InputHandler.enabled = false;
+        RoomManager.Instance.LocalTank.DisablePlayerMovement();
         GameUIManager.Instance.GameOverPanel.Show(ScoreManager.Instance.GetWinner());
     }
 }
