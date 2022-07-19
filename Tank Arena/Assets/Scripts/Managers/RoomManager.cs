@@ -15,6 +15,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
     [SerializeField] private Tank _localTank;
     [SerializeField] private Timer _timer;
 
+    [SerializeField] private GameObject _playerManager;
+    [SerializeField] private GameObject _playerController;
+
+
 
     private bool _allPlayersReady;
 
@@ -34,7 +38,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
             Destroy(gameObject);
             return;
         }
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
             Instance = this;
     }
 
@@ -50,13 +54,15 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         base.OnDisable();
 
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         if(scene.buildIndex == 1)
         {
-            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerManager"), Vector3.zero, Quaternion.identity);
+            _playerManager = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerManager"), Vector3.zero, Quaternion.identity);
         }
     }
 

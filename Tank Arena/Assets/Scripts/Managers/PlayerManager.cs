@@ -11,9 +11,9 @@ public class PlayerManager : MonoBehaviour
 
 
     private PhotonView _photonView;
-    private GameObject _instantiatedController;
-    
+    private GameObject _instantiatedPlayerController;
 
+    public GameObject InstantiatedPlayerController { get => _instantiatedPlayerController; }
 
     private void Awake()
     {
@@ -52,17 +52,17 @@ public class PlayerManager : MonoBehaviour
         }
 
         //Instantiate Player Controller
-        _instantiatedController = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), 
+        _instantiatedPlayerController = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), 
         roomManager.SpawnPoints[playerIndex].position, Quaternion.identity, 0, new object[] { _photonView.ViewID });
-        roomManager.LocalTank = _instantiatedController.GetComponentInChildren<Tank>();
-        _photonView.RPC("RPC_TankCreated", RpcTarget.All, _instantiatedController.GetComponentInChildren<PhotonView>().ViewID);
+        roomManager.LocalTank = InstantiatedPlayerController.GetComponentInChildren<Tank>();
+        _photonView.RPC("RPC_TankCreated", RpcTarget.All, InstantiatedPlayerController.GetComponentInChildren<PhotonView>().ViewID);
         AssignCameraFollowToPlayerController();
     }
 
     private void AssignCameraFollowToPlayerController()
     {
         
-       _cameraFollowScript.SetFollowTarget(_instantiatedController.GetComponentInChildren<Rigidbody>().transform);
+       _cameraFollowScript.SetFollowTarget(InstantiatedPlayerController.GetComponentInChildren<Rigidbody>().transform);
     }
 
     [PunRPC]
