@@ -95,17 +95,18 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
         if(PhotonView.ViewID == viewID)
         {
             CurrentHealth = Mathf.Max(0, CurrentHealth - damage);
-            Debug.Log("damage taken: " + damage);
+
+            PhotonView shooterPV = PhotonView.Find(shooterViewID);
+            ScoreManager.Instance.AddScoreForHit(shooterPV);
             if (CurrentHealth == 0)
             {
-                Die(viewID, shooterViewID);
+                Die(viewID, shooterPV);
             }
         }
     }
 
-    public void Die(int viewIDWhoDied, int shooterViewID)
+    public void Die(int viewIDWhoDied, PhotonView shooterPV)
     {
-        PhotonView shooterPV = PhotonView.Find(shooterViewID);
         ScoreManager.Instance.AddScoreForKill(shooterPV);
         RespawnController();
     }

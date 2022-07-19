@@ -7,6 +7,7 @@ using UnityEngine;
 public class ScoreManager : Singleton<ScoreManager>
 {
     [SerializeField] private int _scoreForKill = 1;
+    [SerializeField] private int _scoreForHit = 1;
 
     private Dictionary<int, int> _playerScores = new Dictionary<int, int>();
 
@@ -46,5 +47,10 @@ public class ScoreManager : Singleton<ScoreManager>
     public void AddScoreForKill(PhotonView tankPV)
     {
         AddScoreToTank(tankPV, _scoreForKill);
+    }
+
+    internal void AddScoreForHit(PhotonView tankPV)
+    {
+        AddScoreToTank(tankPV, _scoreForHit);
     }
 }
