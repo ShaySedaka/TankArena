@@ -4573,7 +4573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _yellowColor: {r: 1, g: 0.9137255, b: 0.10980392, a: 0.2}
-  _redColor: {r: 0.8207547, g: 0.3213332, b: 0.3213332, a: 0.2}
+  _redColor: {r: 0.79607844, g: 0, b: 0.015686275, a: 0.2}
   _tankTurret: {fileID: 6350996569176309526}
   _aimIndicator: {fileID: 9122980328125406131}
   _aimIndicatorRenderer: {fileID: 1582196405319923502}
