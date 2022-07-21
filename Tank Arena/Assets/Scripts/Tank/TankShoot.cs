@@ -36,7 +36,7 @@ public class TankShoot : MonoBehaviour
                 _aimIndicator.SetActive(true);
             }
             ChangeAimindicatorColor();
-            RotateFromMouseVector(_tankTurret);
+            //RotateFromMouseVector(_tankTurret);
         }
         else
         {
@@ -75,6 +75,35 @@ public class TankShoot : MonoBehaviour
             target.y = objectToRotate.transform.position.y;
             objectToRotate.transform.LookAt(target);
         }
+    }
+
+    public void RotateTurret(Vector3 direction)
+    {
+        _tankTurret.transform.forward = direction;
+
+        //Ray ray = _mainCamera.ScreenPointToRay(_input.MousePosition);
+
+        //if (Physics.Raycast(ray, out RaycastHit hitInfo, maxDistance: 300f))
+        //{
+        //    var target = hitInfo.point;
+        //    target.y = _tankTurret.transform.position.y;
+        //    _tankTurret.transform.LookAt(target);
+        //}
+    }    
+    
+    public void LoadShell(Vector3 direction)
+    {
+        IsAiming = true;
+    }
+
+    public void ReleaseShell(Vector3 direction)
+    {
+        if (IsAiming)
+        {
+            Shoot();
+        }
+
+        IsAiming = false;
     }
 
 }

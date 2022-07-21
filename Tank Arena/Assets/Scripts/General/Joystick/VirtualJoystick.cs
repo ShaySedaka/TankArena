@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class VirtualJoystick : MonoBehaviour
+public class VirtualJoystick : MonoBehaviour
 {
     public Vector2 Vector2Position { get => new Vector2(transform.position.x, transform.position.y); }
 
@@ -17,9 +17,9 @@ public abstract class VirtualJoystick : MonoBehaviour
 
     [SerializeField] private bool _isTouched;
 
-    [SerializeField] private PhotonView _pv; // TODO: get rid of this
-
-    [SerializeField] private UnityEvent _onStart;
+    [SerializeField] protected UnityEvent<Vector3> _onTouchStart;
+    [SerializeField] protected UnityEvent<Vector3> _onTouchEnd;
+    [SerializeField] protected UnityEvent<Vector3> _onTouchHeld;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +40,6 @@ public abstract class VirtualJoystick : MonoBehaviour
     void Update()
     {
         HandleJoystickInput();
-        //HandleJoystickInput2();
     }
 
     private void HandleJoystickInput()
@@ -61,14 +60,14 @@ public abstract class VirtualJoystick : MonoBehaviour
                 {
                     case TouchPhase.Began:
                         _isTouched = true;
-                        OnJoystickPressed(joystickDirection);
+                        _onTouchStart?.Invoke(joystickDirection);
 
                         break;
 
                     case TouchPhase.Ended:
                         _isTouched = false;
                         _joyButton.transform.position = transform.position;
-                        OnJoystickReleased(joystickDirection);
+                        _onTouchEnd?.Invoke(joystickDirection);
                         break;
 
                     default:
@@ -88,7 +87,7 @@ public abstract class VirtualJoystick : MonoBehaviour
                                 _joyButton.transform.position = transform.position + (new Vector3(joystickDirection.normalized.x, joystickDirection.normalized.y) * _radius);
                             }
 
-                            OnJoystickHeld(joystickDirection);
+                            _onTouchHeld?.Invoke(joystickDirection);
 
 
                             break;
@@ -99,88 +98,6 @@ public abstract class VirtualJoystick : MonoBehaviour
             }      
         }
     }
-
-    //private void HandleJoystickInput2()
-    //{
-    //    if (Input.touchCount > 0 && Time.timeScale > 0)
-    //    {
-    //        Touch touch = Input.GetTouch(0);
-
-    //        Debug.Log("touch");
-    //        if (_isTouched)
-    //        {
-    //            Vector2 touchPosition = touch.position;
-    //            Vector2 joystickDirection = touchPosition - Vector2Position;
-
-    //            if (joystickDirection.magnitude > _radius / 10) // Joystick was dragged enough to have an effect
-    //            {
-    //                DisplayJoystickDrag(joystickDirection, touchPosition);
-    //                HandleTouch(joystickDirection, touch);
-    //            }
-    //        }
-    //    }
-    //}
-
-    private void DisplayJoystickDrag(Vector2 direction, Vector2 touchPosition)
-    {
-        if (direction.magnitude <= _radius)
-        {
-            _joyButton.transform.position = touchPosition;
-        }
-        else
-        {
-            _joyButton.transform.position = transform.position + (new Vector3(direction.normalized.x, direction.normalized.y) * _radius);
-        }
-    }
-
-    private void HandleTouch(Vector2 direction, Touch touch)
-    {
-        switch (touch.phase)
-        {
-            case TouchPhase.Began:
-                //ToggleVisibility(true);
-                //Vector2 touchPosition = _mainCamera.ScreenToWorldPoint(touch.position);
-                //transform.position = touchPosition;
-                OnJoystickPressed(direction);
-
-                break;
-
-            case TouchPhase.Ended:
-
-                _joyButton.transform.position = transform.position;
-                OnJoystickReleased(direction);
-                //ToggleVisibility(false);
-
-                break;
-
-            default:
-
-                OnJoystickHeld(direction);
-                break;
-        } // end of switch
-    }
-
-    private void OnMouseDown()
-    {
-        _isTouched = true;
-        _pv.RPC("RPC_DebugBool", RpcTarget.All, _isTouched);
-    }
-
-    private void OnMouseUp()
-    {
-        _isTouched = false;
-        _pv.RPC("RPC_DebugBool", RpcTarget.All, _isTouched);
-    }
-
-    [PunRPC]
-    private void RPC_DebugBool(bool givenBool)
-    {
-        Debug.Log("isTouched is " + givenBool);
-    }
-
-    protected abstract void OnJoystickHeld(Vector3 direction);
-    protected abstract void OnJoystickPressed(Vector3 direction);
-    protected abstract void OnJoystickReleased(Vector3 direction);
 
     private void ToggleVisibility(bool state)
     {

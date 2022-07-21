@@ -18,7 +18,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject _playerManager;
     [SerializeField] private GameObject _playerController;
 
-
+    [SerializeField] private TankJoystick _localTankMovementJoystick;
+    [SerializeField] private ShootingJoystick _localTankShootingJoystick;
 
     private bool _allPlayersReady;
 
@@ -30,6 +31,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public int ClientTankSpawnPointIndex { get => _clientTankSpawnPointIndex;}
     public Tank LocalTank { get => _localTank; set => _localTank = value; }
+    public TankJoystick LocalTankMovementJoystick { get => _localTankMovementJoystick; }
+    public ShootingJoystick LocalTankShootingJoystick { get => _localTankShootingJoystick; }
 
     private void Awake()
     {
@@ -80,6 +83,13 @@ public class RoomManager : MonoBehaviourPunCallbacks
     private void RPC_StartMatchTimer()
     {
         _timer.StartTimer();
+    }
+
+    public void ConnectLocalTankToJoystickControls()
+    {
+        LocalTankMovementJoystick.AddTankMoving(LocalTank);
+        //LocalTankShootingJoystick.AddTankShooting(LocalTank);
+
     }
 
     #region Photon Callbacks

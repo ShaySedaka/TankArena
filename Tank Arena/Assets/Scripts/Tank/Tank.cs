@@ -16,6 +16,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private InputHandler _inputHandler;
     [SerializeField] private TopDownCharacterMover _tankMover;
+    [SerializeField] private TankShoot _tankShoot;
 
     [SerializeField] private GameObject _tankSihlouette;
 
@@ -44,6 +45,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     public float RespawnTime { get => _respawnTime; }
     public InputHandler InputHandler { get => _inputHandler; set => _inputHandler = value; }
     public TopDownCharacterMover TankMover { get => _tankMover; }
+    public TankShoot TankShoot { get => _tankShoot; }
 
     private void Awake()
     {

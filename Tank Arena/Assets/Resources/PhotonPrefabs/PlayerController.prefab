@@ -4556,6 +4556,7 @@ MonoBehaviour:
   _playerController: {fileID: 1835009860293476336}
   _inputHandler: {fileID: 227689487701098254}
   _tankMover: {fileID: 910512988629402696}
+  _tankShoot: {fileID: 0}
   _tankSihlouette: {fileID: 4765047262620833506}
   _respawnTime: 3
   _playerManager: {fileID: 0}
@@ -4609,7 +4610,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6350996569176309534}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5812227a44562d47943120202aead14, type: 3}
   m_Name: 
