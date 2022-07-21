@@ -401,7 +401,7 @@ MonoBehaviour:
   _playerListItem: {fileID: 1767527851184655371, guid: 05ba903cc92cf7e419b9c415380a6f73,
     type: 3}
   _playerListContent: {fileID: 254542228}
-  _amountPlayersToStart: 3
+  _amountPlayersToStart: 2
 --- !u!1 &566281635
 GameObject:
   m_ObjectHideFlags: 0

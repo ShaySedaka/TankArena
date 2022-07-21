@@ -39,8 +39,14 @@ public class TopDownCharacterMover : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
-        var targetVector = new Vector3(_input.InputVector.x, 0, _input.InputVector.y).normalized;
+        //MoveTank(_input.InputVector);
+
+
+    }
+
+    public void MoveTank(Vector3 direction)
+    {
+        var targetVector = new Vector3(direction.x, 0, direction.y).normalized;
 
         var movementVector = MoveTowardTarget(targetVector);
 
@@ -52,7 +58,6 @@ public class TopDownCharacterMover : MonoBehaviour
         {
             RotateFromMouseVector();
         }
-
     }
 
     private void RotateFromMouseVector()

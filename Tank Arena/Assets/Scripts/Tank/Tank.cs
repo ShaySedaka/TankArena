@@ -43,6 +43,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     public PhotonView PhotonView { get => _photonView; }
     public float RespawnTime { get => _respawnTime; }
     public InputHandler InputHandler { get => _inputHandler; set => _inputHandler = value; }
+    public TopDownCharacterMover TankMover { get => _tankMover; }
 
     private void Awake()
     {
@@ -69,7 +70,7 @@ public class Tank : MonoBehaviourPunCallbacks, IDamagable
     public void DisablePlayerMovement()
     {
         _inputHandler.enabled = false;
-        _tankMover.enabled = false;
+        TankMover.enabled = false;
     }
 
     #region Damage Management
