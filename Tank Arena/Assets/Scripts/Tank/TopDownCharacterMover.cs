@@ -48,6 +48,8 @@ public class TopDownCharacterMover : MonoBehaviour
     {
         var targetVector = new Vector3(direction.x, 0, direction.y).normalized;
 
+        _myPhotonView.RPC("RPC_DebugDirection", RpcTarget.All, targetVector);
+
         var movementVector = MoveTowardTarget(targetVector);
 
         if (!RotateTowardMouse)
@@ -58,6 +60,12 @@ public class TopDownCharacterMover : MonoBehaviour
         {
             RotateFromMouseVector();
         }
+    }
+
+    [PunRPC]
+    private void RPC_DebugDirection(Vector3 direction)
+    {
+        Debug.Log(direction);
     }
 
     private void RotateFromMouseVector()
