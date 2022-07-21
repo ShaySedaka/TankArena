@@ -88,8 +88,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public void ConnectLocalTankToJoystickControls()
     {
         LocalTankMovementJoystick.AddTankMoving(LocalTank);
-        //LocalTankShootingJoystick.AddTankShooting(LocalTank);
-
+        LocalTankShootingJoystick.AddTankShooting(LocalTank);
+        
     }
 
     #region Photon Callbacks
