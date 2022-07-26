@@ -46,6 +46,7 @@ public class VirtualJoystick : MonoBehaviour
     {
         if (Input.touchCount > 0 && Time.timeScale > 0)
         {
+            int currentTouchIndex = Input.touchCount - 1;
             Touch touch = Input.GetTouch(0);
 
             Vector2 touchPosition = touch.position;

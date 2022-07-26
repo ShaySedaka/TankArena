@@ -4556,7 +4556,7 @@ MonoBehaviour:
   _playerController: {fileID: 1835009860293476336}
   _inputHandler: {fileID: 227689487701098254}
   _tankMover: {fileID: 910512988629402696}
-  _tankShoot: {fileID: 0}
+  _tankShoot: {fileID: 1413795432061628584}
   _tankSihlouette: {fileID: 4765047262620833506}
   _respawnTime: 3
   _playerManager: {fileID: 0}

@@ -79,7 +79,9 @@ public class TankShoot : MonoBehaviour
 
     public void RotateTurret(Vector3 direction)
     {
-        _tankTurret.transform.forward = direction;
+        var targetVector = new Vector3(direction.x, 0, direction.y).normalized;
+
+        _tankTurret.transform.forward = targetVector;
 
         //Ray ray = _mainCamera.ScreenPointToRay(_input.MousePosition);
 
