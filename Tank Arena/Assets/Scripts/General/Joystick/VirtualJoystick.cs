@@ -9,6 +9,8 @@ public class VirtualJoystick : MonoBehaviour
 {
     public Vector2 Vector2Position { get => new Vector2(transform.position.x, transform.position.y); }
 
+    private int _currentTouchIndex = 0;
+
     [SerializeField] private Vector2 Vector2PosInspector;
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private float _radius;
@@ -46,8 +48,13 @@ public class VirtualJoystick : MonoBehaviour
     {
         if (Input.touchCount > 0 && Time.timeScale > 0)
         {
-            int currentTouchIndex = Input.touchCount - 1;
-            Touch touch = Input.GetTouch(0);
+            int touchNumber = Input.touchCount - 1;
+            if(_isTouched)
+            {
+                touchNumber = _currentTouchIndex;
+            }
+
+            Touch touch = Input.GetTouch(touchNumber);
 
             Vector2 touchPosition = touch.position;
             float touchDistanceFromJoystick = (Vector2Position - touchPosition).magnitude;
@@ -60,12 +67,14 @@ public class VirtualJoystick : MonoBehaviour
                 switch (touch.phase)
                 {
                     case TouchPhase.Began:
+                        _currentTouchIndex = Input.touchCount - 1;
                         _isTouched = true;
                         _onTouchStart?.Invoke(joystickDirection);
 
                         break;
 
                     case TouchPhase.Ended:
+                        
                         _isTouched = false;
                         _joyButton.transform.position = transform.position;
                         _onTouchEnd?.Invoke(joystickDirection);
